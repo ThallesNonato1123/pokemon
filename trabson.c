@@ -17,13 +17,13 @@ typedef struct {
  pokemon read_data(){
     pokemon v[];
     for (int j = 0 ; j < 3 ; j++) {
-    printf("%d Pokemon", i);
+    printf("Pokemon %d", i + 1);
     scanf("%f %u %u %u %u %u %u %f", v[j].level, v[j].number, v[j].speed, v[j].b_atk,v[j].b_def, v[j].b_def, v[i].b_sta, v[j].forca_golpe);
         }
     } 
  }
 
- void battle(pokemon p1[],pokemon p2[]){
+ void battle(pokemon p1[], pokemon p2[]) {
      double dano1, dano2, hp1, hp2;
      for (int i = 0 ; i < 3 ; i++) {
          dano1 = ((2 * p1[i].level / 5) + 2 * p1[i].forca_golpe * ((p1[i].b_atk / p1[i].b_def) / 50) + 2);
