@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-void asterisco() // só pra separar direitinho no terminal
+void asterisco()
 {
     for (int i = 0; i < 35 ; i++)
         printf("*");
@@ -26,8 +26,8 @@ typedef struct {
  void battle(pokemon p1[], pokemon p2[]) {
      double dano1, dano2, hp1, hp2;
      for (int i = 0 ; i < 3 ; i++) {
-         dano1 = ((2 * p1[i].level / 5) + 2 * p1[i].forca_golpe * ((p1[i].b_atk / p1[i].b_def) / 50) + 2);
-         dano2 = ((2 * p2[i].level / 5) + 2 * p2[i].forca_golpe * ((p2[i].b_atk / p2[i].b_def) / 50) + 2);
+         dano1 = ((((2 * p1[i].level / 5) + 2) * p1[i].forca_golpe * ((p1[i].b_atk / p1[i].b_def) / 50)) + 2);
+         dano2 = ((((2 * p2[i].level / 5) + 2) * p2[i].forca_golpe * ((p2[i].b_atk / p2[i].b_def) / 50)) + 2);
          hp1 = (((p1[i].b_stamina * 2 * p1[i].level) / 100) + p1[i].level + 10);
          hp2 = (((p2[i].b_stamina * 2 * p2[i].level) / 100) + p2[i].level + 10);
          if (p1[i].speed > p2[i].speed) {
