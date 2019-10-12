@@ -7,38 +7,33 @@ typedef struct{
     float f_golpe;
 }pokemon;
  pokemon read_data(){
-    pokemon v[];
-    for(int j=0;j<3;j++){
-    printf("%d Pokemon",i);
-    scanf("%f %u %u %u %u %u %u %f",v[j].lvl,v[j].number,v[j].speed,v[j].b_atk,v[j].b_def,v[j].b_def,v[i].b_sta,v[j].f_golpe);
-        }
-    } 
- }
- void battle(pokemon p1[],pokemon p2[]){
-     double dano1,dano2,hp1,hp2;
-     for(int i=0; i<3; i++){
-         dano1=((2*p1[i].lvl/5)+2*p1[i].f_golpe*((p1[i].b_atk/p1[i].b_def)/50)+2);
-         dano2=((2*p2[i].lvl/5)+2*p2[i].f_golpe*((p2[i].b_atk/p2[i].b_def)/50)+2);
-         hp1=(((p1[i].b_sta*2*p1[i].lvl)/100)+p1[i].lvl+10);
-         hp2=(((p2[i].b_sta*2*p2[i].lvl)/100)+p2[i].lvl+10);
-         if(p1[i].speed>p2[i].speed){
-             do{
-                hp2-=dano1;
-                hp1-=dano2; 
-             }while(hp1 !=0 || hp2 !=0);
-             if(hp1 == 0)
-                printf("Jogador 2 ganhou o round");
-             else
-                printf("Jogador 1 ganhou o round");
-         }else{
-             do{
-                hp1-=dano2;
-                hp2-=dano1; 
-             }while(hp1 !=0 || hp2 !=0);
-             if(hp1 == 0)
-                printf("Jogador 2 ganhou o round");
-             else
-                printf("Jogador 1 ganhou o round");
-         }
-     }
- }
+  pokemon aux;
+  scanf("%d %d", &aux.number, &aux.speed);
+  scanf("%d %d %d", &aux.b_atk, &aux.b_def, &aux.b_sta);
+  scanf("%f %f", &aux.lvl, &aux.f_golpe);
+  aux.hp = (aux.b_sta * 2 * aux.lvl)/100 + aux.lvl + 10;
+  return aux;
+}
+void battle(pokemon p1[], pokemon p2[]) {
+  int i = 0, j = 0;
+  while(i < 3 && j < 3) {
+    int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
+    while(p1[i].hp > 0 && p2[j].hp > 0) {
+      if(bate == 0) { // P2[j] apanha
+        p2[j].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].f_golpe * (p1[i].b_atk / p2[j].b_def)) / 50 + 2;
+        bate = 1;
+      } else { // P1[i] apanha
+        p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[j].f_golpe * (p2[j].b_atk / p1[i].b_def)) / 50 + 2;
+        bate = 0;
+      }
+    }
+    if(p1[i].hp > 0) { // p1[i] sobreviveu
+      printf("Pokemon %d (Player %d) ganhou de %d com %d de hp restante\n", p1[i].number, 1, p2[j].number, p1[i].hp);
+      j++;
+    } else { // p2[j] sobreviveu
+      printf("Pokemon %d (Player %d) ganhou de %d com %d de hp restante\n", p2[j].number, 2,  p1[i].number, p2[j].hp);
+      i++;
+    }
+  }
+}
+ 
