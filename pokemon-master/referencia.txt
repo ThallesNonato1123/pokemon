@@ -1,0 +1,4 @@
+// Fire - 1 / Grass - 2 / Ground -3 // Normal - 4 / Rock - 5
+// Fairy 6 // Fighting 7 // Poison 8 // Water 9 // Eletric 10 // Bug 11
+// Ice 12 // Steel 13 // Dark 14 // Ghost 15 // Dragon 16 // Flying 17 
+// Psychic 18
