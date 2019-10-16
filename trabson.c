@@ -14,7 +14,7 @@ typedef struct {
     unsigned  num,speed,tipo1[10],tipo2[10];
     float ataque, defesa, stamina,hp;
     int numAtk[7];
-    float f1_golpe;
+    golpes fGolpe;
 }pokemon;
 
 pokemon read_data() { //função para ler os dados dos pokèmons
@@ -44,10 +44,10 @@ void battle(pokemon p1[], pokemon p2[]) {
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
         while (p1[i].hp > 0 && p2[j].hp > 0) {
             if (bate == 0) { // P2[j] sofre dano
-               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].f1_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe.f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
                 bate = 1;
                 } else { // P1[i] sofre dano
-                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[j].f1_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[j].fGolpe.f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
                 bate = 0;
                 }
           }
@@ -99,4 +99,5 @@ int main () {
     printf("%s %.2f\n", A.nome, A.hp);
     return 0;
 }
+
 
