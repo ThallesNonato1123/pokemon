@@ -5,6 +5,7 @@ typedef struct{
     int t_golpe[16];
     float g_energia;
     char nomeGolpe[210], modoGolpe[210];
+    float f_golpe;
 }golpes; //struct criada para armazenar os dados dos golpes: força, tipo, ganho de energia, nome do golpe e modo do Golpe (rápido ou carregado)
 
 typedef struct {
@@ -13,7 +14,7 @@ typedef struct {
     unsigned  num,speed,tipo1[10],tipo2[10];
     float ataque, defesa, stamina,hp;
     int numAtk[7];
-    float f_golpe;
+    float f1_golpe;
 }pokemon;
 
 pokemon read_data() { //função para ler os dados dos pokèmons
@@ -43,10 +44,10 @@ void battle(pokemon p1[], pokemon p2[]) {
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
         while (p1[i].hp > 0 && p2[j].hp > 0) {
             if (bate == 0) { // P2[j] sofre dano
-               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].f1_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
                 bate = 1;
                 } else { // P1[i] sofre dano
-                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[j].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[j].f1_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
                 bate = 0;
                 }
           }
@@ -62,26 +63,26 @@ void battle(pokemon p1[], pokemon p2[]) {
 
 void LerGolpe()
 {
+    golpes ataque[7];
     FILE *polgues; // arquivo golpes
     polgues = fopen("ataques.txt", "r"); //recebe os dados do golpe
     if(polgues == NULL) {
         printf("Erro na abertura do arquivo\n");
     }
     for(int i = 0 ; i < 208 ; i++) {
-       // fscanf(polgues, "%d %c", &golpes[i].t_golpe, &golpes[i].modoGolpe);
-       // fgets(golpes[i].nomeGolpe, 23, polgues);
-       // fscanf(polgues, "%f %f", &golpes[i].f_golpe, &golpes[i].g_energia);
+        fscanf(polgues, "%d %c", &ataque[i].t_golpe, &ataque[i].modoGolpe);
+       fgets(ataque[i].nomeGolpe, 23, polgues);
+       fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
     }
     fclose(polgues);
 }
-
-pokemon Aux;
+pokemon Aux[152];
 void TransfereDados()
 {
     FILE *dadospok;
     dadospok = fopen("ataque_cada_pokemon_1-1", "r");
     for(int i = 0 ; i < 150 ; i++) { // 150 pois o Mew é diferente dos demais
-        //  fscanf(dadospok, "%d %d %d %d %d %d", Aux[i].numatk[0], Aux[i].numatk[1], Aux[i].numatk[2], Aux[i].numatk[3], Aux[i].numatk[4], Aux[i].numatk[5],Aux[i].numatk[6]);
+    fscanf(dadospok, "%d %d %d %d %d %d", Aux[i].numAtk[0], Aux[i].numAtk[1], Aux[i].numAtk[2], Aux[i].numAtk[3], Aux[i].numAtk[4], Aux[i].numAtk[5],Aux[i].numAtk[6]);
     }
 }
 void EscolheGolpe()
@@ -98,3 +99,4 @@ int main () {
     printf("%s %.2f\n", A.nome, A.hp);
     return 0;
 }
+
