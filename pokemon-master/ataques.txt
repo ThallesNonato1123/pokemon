@@ -1,207 +1,207 @@
-013     R  Steel Wing                  3.5 2.5 000
-013     R  Iron Tail 	 	         3.0 2.0   001 
-016    R  Dragon Tail  	         3.0 3.3	   002
-009    R  Waterfall 		         4.0 2.7   003
-005      R  Smack Down 	         	 4.0 2.7   004
-005      R  Rock Throw 	         	 4.0 2.5   005
-007  R  Counter 	                 4.0 3.5   006	
-002     R  Razor Leaf 	         	 5.5 2.0   007
-015     R  Shadow Claw                 3.0 4.0	008
-001      R  Fire Spin 	 	         3.0 3.3	009
-008    R  Poison Jab 	         3.0 3.5	    010 
-018   R  Confusion 	 	         4.0 3.0	    011
-001    R  Fire Fang 	 	         3.5 2.5	012
-004    R  Scratch 		         4.0 2.0	    013
-016    R  Dragon Breath 	         4.0 3.0	014
-014      R  Bite 	                 4.0 2.0	015
-002    R  Vine Whip 	 	         2.5 4.0	016
-004    R  Pound 	                 2.5 2.0	017
-017       R  Air Slash 	     	         3.0 3.0 018	
-007	R  Rock Smash 	         3.0 2.3	         019
+013     R  Steel Wing                  3.5 2.5   000
+013     R  Iron Tail 	 	         3.0 2.0     001 
+016     R  Dragon Tail  	         3.0 3.3     002
+009     R  Waterfall 		         4.0 2.7     003
+005     R  Smack Down 	         	 4.0 2.7     004
+005     R  Rock Throw 	         	 4.0 2.5     005
+007     R  Counter 	                 4.0 3.5     006	
+002     R  Razor Leaf 	         	 5.5 2.0     007
+015     R  Shadow Claw                 3.0 4.0	 008
+001     R  Fire Spin 	 	         3.0 3.3	 009
+008     R  Poison Jab 	         3.0 3.5	     010 
+018     R  Confusion 	 	         4.0 3.0	 011
+001     R  Fire Fang 	 	         3.5 2.5	 012
+004     R  Scratch 		         4.0 2.0	     013
+016     R  Dragon Breath 	         4.0 3.0	 014
+014     R  Bite 	                 4.0 2.0	 015
+002     R  Vine Whip 	 	         2.5 4.0	 016
+004     R  Pound 	                 2.5 2.0	 017
+017     R  Air Slash 	     	         3.0 3.0 018	
+007	    R  Rock Smash 	         3.0 2.3	     019
 013     R  Metal Claw 	         2.5 3.0	     020
-008    R  Acid 	     	         3.0 2.5	    021
-012       R  Frost Breath 	         3.5 2.5	022 
-014      R  Feint Attack 	         3.0 3.0	023
-018   R  Zen Headbutt 	         2.7 2.0	    024
-014      R  Snarl 	     	         2.7 3.3	025
-018   R  Extrasensory	         2.7 3.3	    026
-003    R  Mud-Slap 		         3.0 2.7	    027
-017       R  Wing Attack  	         2.5 3.5	028
-009     R  Water Gun 		         3.0 3.0	029
-004    R  Tackle 	                 3.0 2.0	030
-014      R  Sucker Punch	         2.5 3.5	031
-011       R  Struggle Bug 	         3.0 2.7	032
-004    R  Quick Attack 	         	 2.5 3.5	033
-017       R  Peck 	     	         3.0 2.5	034
-007  R  Low Kick 	 	         2.0 2.5	    035
-015     R  Lick 	     	         3.0 3.0	036
-007  R  Karate Chop 	         2.5 3.5	    037
-012       R  Ice Shard 	 	         3.0 3.3	038
-004    R  Hidden Power 	         	 3.0 2.7	039
-001     R  Ember 	     	         3.0 3.0	040
-004    R  Cut 	                 	 3.0 2.0	041
-013     R  Bullet Punch 	         3.0 3.5	042
-011       R  Bug Bite 	 	         3.0 3.0	043
-009     R  Bubble 	                 2.7 3.7	044
-011       R  Infestation  	         2.0 3.7	045
-010  R  Volt Switch  	         2.4 2.0	    046
-010  R  Spark 	    	         2.0 4.0	    047
-010  R  Thunder Shock	         1.5 4.5	    048
-018   R  Psycho Cut                  1.5 4.5	049
-008    R  Poison Sting 	         1.5 3.0	    050
-003    R  Mud Shot 	 	         1.5 4.5	    051
-015     R  Hex 	     	         2.0 3.7	    052
-011       R  Fury Cutter  	         2.0 4.0	053
-010  R  Charge Beam 	         1.7 3.7	    054
-002    R  Bullet Seed 	         	 1.7 3.7	055
-015     R  Astonish 		         1.7 3.0	056
-004    R  Take Down 		         1.7 2.7	057
-012       R  Powder Snow  	         2.0 4.0	058
-004    R  Present 	 	         1.0 4.0	    059
-004    R  Yawn 	  	 	 	 0.0 3.0	        060
-004    R  Transform 	 	         0.0 0.0	061
-009     R  Splash 	                 0.0 3.0    062
-004    C  Wrap                        	 60  45 063  			
-004    C  Hyper Beam                 	 150 80 064   			
-014      C  Dark Pulse            	 80  50   	065		
-008    C  Sludge                	 50  40   	066	
-004    C  Vice Grip             40 	40   		067	
-001  C  Flame Wheel           60 	55    		068	
-011       C  Megahorn              	90 	55    	069		
-001 C  Flamethrower          90 	55    		070
-003    C  Dig                   100 80    		071	
-007  C  Cross Chop               50 	35   	072		
-018   C  Psybeam                  70 	60    	073		
-003   C  Earthquake            	120 65    		074	
-005      C  Stone Edge               100 55    	075		
-012       C  Ice Punch                55 	40  076		
-018   C  Heart Stamp              40 	40   	077		
-010  C  Discharge                65 	45   	078		
-013     C  Flash Cannon          	110 65    	079		
-017    C  Drill Peck            60 	40   		080	
-012       C  Ice Beam              	90 	55    	081		
-012       C  Blizzard                 130 75    082			
-001      C  Heat Wave             95 	75    	083		
-017    C  Aerial Ace            55 	45   		084	
-003    C  Drill Run             80 	55    		085	
-002     C  Petal Blizzard        	110 65    	086		
-002	C  Mega Drain            	25 	55    		087	
-011       C  Bug Buzz              	90  60    	088		
-008    C  Poison Fang           40 	35   		089	
-014      C  Night Slash           50 	40   	090		
-009     C  Bubble Beam           	45 	40   	091		
-007  C  Submission               60 	50   	092		
-007 C  Low Sweep                40 	40   		093	
-009     C  Aqua Jet              45 	45   	094		
-009     C  Aqua Tail                50 	35   	095		
-002     C  Seed Bomb             	55 	40   	096		
-018   C  Psyshock                 70 	45   	097		
-005      C  Ancient Power         	70 	45      098
-005      C  Rock Tomb                70 	60  099  			
-005    C  Rock Slide            	80 	45   	100		
-005      C  Power Gem             	80 	60    	101		
-015     C  Shadow Sneak          50 	45   	102		
-015     C  Shadow Punch          40 	35   	103		
-015     C  Ominous Wind          	50 	40      104
-015     C  Shadow Ball           100 55    		105	
-013     C  Magnet Bomb           70 	45   	106		
-013     C  Iron Head             	70 	50   	107		
-010  C  Parabolic Charge         25 	55    	108		
-010 C  Thunder Punch            55 	40   		109	
-010  C  Thunder                  100 60    		110	
-010  C  Thunderbolt              90 	55    	111		
-016    C  Twister                	45 	45   	112		
-016    C  Dragon Pulse           	90 	60    	113		
-016   C  Dragon Claw            	50 	35   	114		
-006     C  Disarming Voice          70 	45   	115		
-006     C  Draining Kiss            60 	55    	116		
-006     C  Dazzling Gleam        110 70    		117	
-006     C  Moonblast                130 70    	118		
-006     C  Play Rough               90 	60    	119		
-008    C  Cross Poison             40 	35   	120		
-008    C  Sludge Bomb              80 	50   	121		
-008    C  Sludge Wave              110 65    	122		
-008    C  Gunk Shot             130 75    		123	
-003   C  Bone Club                40 	35   	124		
-003    C  Bulldoze              	80 	60    	125		
-003    C  Mud Bomb              	55 	40   	126		
-011      C  Signal Beam           	75 	55    	127		
-011      C  X-Scissor                45 	35  128			
-001      C  Flame Charge          	70 	50   	129		
-001     C  Flame Burst           	70 	55    	130		
-001      C  Fire Blast               140 80    	131		
-009     C  Brine                 60 	50   	132		
-009     C  Water Pulse           	70 	60    	133		
-009     C  Scald                    80 	60    	134		
-009     C  Hydro Pump               130 75    			
-018   C  Psychic                  100 70    			
-018   C  Psystrike                100 55    			
-012       C  Icy Wind                 60 	45   			
-002     C  Giga Drain               50 	80    			
-001      C  Fire Punch               55 	40   			
-002     C  Solar Beam               150 80    			
-002     C  Leaf Blade               70 	35   			
-002     C  Power Whip               90 	50   			
-017    C  Air Cutter               60  55    			
-017    C  Hurricane                110 65    			
-007  C  Brick Break              40 	35   			
-004    C  Swift                    60 	55    			
-004    C  Horn Attack              40 	35   			
-004    C  Stomp                 55 	40   			
-004   C  Hyper Fang               80 	50   			
-004   C  Body Slam                60 	35   			
-004   C  Rest                  	50 	35   			
-004   C  Struggle                 35 	100   			
-009     C  Scald (Blastoise)        50 	80    			
-009     C  Hydro Pump (Blastoise)   90 	80    			
-004    C  Wrap (Green)          	25 	45   			
-004   C  Wrap (Pink)           	25 	45   			
-007  C  Close Combat             100 60    			
-007  C  Dynamic Punch            90 	50   			
-007  C  Focus Blast              150 75    			
-012       C  Aurora Beam           	80 	60    			
-010  C  Wild Charge              90 	50   			
-010  C  Zap Cannon               150 80    			
-012       C  Avalanche             	90 	45   			
-017    C  Brave Bird               90 	55    			
-017    C  Sky Attack               80 	45   			
-003   C  Sand Tomb             	80 	60    			
-005      C  Rock Blast            	50 	40   			
-011      C  Silver Wind              70 	45   
-015     C  Night Shade              60 	55    			
-013     C  Gyro Ball             80 	60    			
-013     C  Heavy Slam            	70 	50   			
-001     C  Overheat              	150 80    			
-002     C  Grass Knot            90 	50   			
-002     C  Energy Ball              90 	60    			
-018   C  Future Sight             120 65    			
-018   C  Mirror Coat             60 	55    			
-016    C  Outrage                	110 60    			
-014      C  Crunch                   70 	45   			
-014      C  Foul Play             	70 	45   			
-009     C  Surf                    	65 	40   			
-016    C  Draco Meteor          150 75    			
-013     C  Doom Desire           	80 	35   			
-018   C  Psycho Boost             70 	40   			
-009     C  Origin Pulse          130 60    			
-003    C  Precipice Blades         130 60    			
-001      C  Weather Ball          60 	35   			
-012       C  Weather Ball          	60 	35   			
-004    C  Weather Ball          	60 	35   			
-009     C  Weather Ball          60 	35   			
-002     C  Frenzy Plant          	100 45   			
-001      C  Blast Burn               110 50   			
-009     C  Hydro Cannon          	90 	40   			
-004    C  Last Resort           90 	55    			
-013     C  Meteor Mash           100	50   			
-004    C  Skull Bash            	130	75    	
-008    C  Acid Spray               20 	50   	
-003   C  Earth Power           90 	55    	
-009     C  Crabhammer            75 	50   	
-002     C  Leaf Tornado          45 	40   	
-009     C  Muddy Water           	35 	35   	
-001     C  Blaze Kick            	55 	40   			
-007 C  Power-Up Punch           40 	35   	
-004    C  Frustration              10 	40   			
-004    C  Return                	50 	40   			
-018   C  Synchronoise             80 	50
+008     R  Acid 	     	         3.0 2.5	 021
+012     R  Frost Breath 	         3.5 2.5	 022 
+014     R  Feint Attack 	         3.0 3.0	 023
+018     R  Zen Headbutt 	         2.7 2.0	 024
+014     R  Snarl 	     	         2.7 3.3	 025
+018     R  Extrasensory	         2.7 3.3	     026
+003     R  Mud-Slap 		         3.0 2.7	 027
+017     R  Wing Attack  	         2.5 3.5	 028
+009     R  Water Gun 		         3.0 3.0	 029
+004     R  Tackle 	                 3.0 2.0	 030
+014     R  Sucker Punch	         2.5 3.5	     031
+011     R  Struggle Bug 	         3.0 2.7	 032
+004     R  Quick Attack 	         	 2.5 3.5 033
+017     R  Peck 	     	         3.0 2.5	 034
+007     R  Low Kick 	 	         2.0 2.5	 035
+015     R  Lick 	     	         3.0 3.0	 036
+007     R  Karate Chop 	         2.5 3.5	     037
+012     R  Ice Shard 	 	         3.0 3.3	 038
+004     R  Hidden Power 	         	 3.0 2.7 039
+001     R  Ember 	     	         3.0 3.0	 040
+004     R  Cut 	                 	 3.0 2.0	 041
+013     R  Bullet Punch 	         3.0 3.5	 042
+011     R  Bug Bite 	 	         3.0 3.0	 043
+009     R  Bubble 	                 2.7 3.7	 044
+011     R  Infestation  	         2.0 3.7	 045
+010     R  Volt Switch  	         2.4 2.0	 046
+010     R  Spark 	    	         2.0 4.0	 047
+010     R  Thunder Shock	         1.5 4.5	 048
+018     R  Psycho Cut                  1.5 4.5	 049
+008     R  Poison Sting 	         1.5 3.0	 050
+003     R  Mud Shot 	 	         1.5 4.5	 051
+015     R  Hex 	     	         2.0 3.7	     052
+011     R  Fury Cutter  	         2.0 4.0	 053
+010     R  Charge Beam 	         1.7 3.7	     054
+002     R  Bullet Seed 	         	 1.7 3.7	 055
+015     R  Astonish 		         1.7 3.0	 056
+004     R  Take Down 		         1.7 2.7	 057
+012     R  Powder Snow  	         2.0 4.0	 058
+004     R  Present 	 	         1.0 4.0	     059
+004     R  Yawn 	  	 	 	 0.0 3.0	     060
+004     R  Transform 	 	         0.0 0.0	 061
+009     R  Splash 	                 0.0 3.0     062
+004     C  Wrap                        	 60  45  063  			
+004     C  Hyper Beam                 	 150 80  064   			
+014     C  Dark Pulse            	 80  50   	 065		
+008     C  Sludge                	 50  40   	 066	
+004     C  Vice Grip             40 	40   	 067	
+001     C  Flame Wheel           60 	55    	 068	
+011     C  Megahorn              	90 	55    	 069		
+001     C  Flamethrower          90 	55    	 070
+003     C  Dig                   100 80    		 071	
+007     C  Cross Chop               50 	35   	 072		
+018     C  Psybeam                  70 	60    	 073		
+003     C  Earthquake            	120 65    	 074	
+005     C  Stone Edge               100 55    	 075		
+012     C  Ice Punch                55 	40       076		
+018     C  Heart Stamp              40 	40   	 077		
+010     C  Discharge                65 	45   	 078		
+013     C  Flash Cannon          	110 65    	 079		
+017     C  Drill Peck            60 	40   	 080	
+012     C  Ice Beam              	90 	55    	 081		
+012     C  Blizzard                 130 75       082			
+001     C  Heat Wave             95 	75    	 083		
+017     C  Aerial Ace            55 	45   	 084	
+003     C  Drill Run             80 	55    	 085	
+002     C  Petal Blizzard        	110 65    	 086		
+002	    C  Mega Drain            	25 	55    	 087	
+011     C  Bug Buzz              	90  60    	 088		
+008     C  Poison Fang           40 	35   	 089	
+014     C  Night Slash           50 	40   	 090		
+009     C  Bubble Beam           	45 	40   	 091		
+007     C  Submission               60 	50   	 092		
+007     C  Low Sweep                40 	40   	 093	
+009     C  Aqua Jet              45 	45   	 094		
+009     C  Aqua Tail                50 	35   	 095		
+002     C  Seed Bomb             	55 	40   	 096		
+018     C  Psyshock                 70 	45   	 097		
+005     C  Ancient Power         	70 	45       098
+005     C  Rock Tomb                70 	60       099  			
+005     C  Rock Slide            	80 	45   	 100		
+005     C  Power Gem             	80 	60    	 101		
+015     C  Shadow Sneak          50 	45   	 102		
+015     C  Shadow Punch          40 	35   	 103		
+015     C  Ominous Wind          	50 	40       104
+015     C  Shadow Ball           100 55    		 105	
+013     C  Magnet Bomb           70 	45   	 106		
+013     C  Iron Head             	70 	50   	 107		
+010     C  Parabolic Charge         25 	55    	 108		
+010     C  Thunder Punch            55 	40   	 109	
+010     C  Thunder                  100 60    	 110	
+010     C  Thunderbolt              90 	55    	 111		
+016     C  Twister                	45 	45   	 112		
+016     C  Dragon Pulse           	90 	60    	 113		
+016     C  Dragon Claw            	50 	35   	 114		
+006     C  Disarming Voice          70 	45   	 115		
+006     C  Draining Kiss            60 	55    	 116		
+006     C  Dazzling Gleam        110 70    		 117	
+006     C  Moonblast                130 70    	 118		
+006     C  Play Rough               90 	60    	 119		
+008     C  Cross Poison             40 	35   	 120		
+008     C  Sludge Bomb              80 	50   	 121		
+008     C  Sludge Wave              110 65    	 122		
+008     C  Gunk Shot             130 75    		 123	
+003     C  Bone Club                40 	35   	 124		
+003     C  Bulldoze              	80 	60    	 125		
+003     C  Mud Bomb              	55 	40   	 126		
+011     C  Signal Beam           	75 	55    	 127		
+011     C  X-Scissor                45 	35       128			
+001     C  Flame Charge          	70 	50   	 129		
+001     C  Flame Burst           	70 	55    	 130		
+001     C  Fire Blast               140 80    	 131		
+009     C  Brine                 60 	50   	 132		
+009     C  Water Pulse           	70 	60    	 133		
+009     C  Scald                    80 	60    	 134		
+009     C  Hydro Pump               130 75       135	
+018     C  Psychic                  100 70    	 136		
+018     C  Psystrike                100 55    	 137		
+012     C  Icy Wind                 60 	45       138 			
+002     C  Giga Drain               50 	80    	 139		
+001     C  Fire Punch               55 	40       140 			
+002     C  Solar Beam               150 80    	 141		
+002     C  Leaf Blade               70 	35   	 142		
+002     C  Power Whip               90 	50   	 143		
+017     C  Air Cutter               60  55    	 144		
+017     C  Hurricane                110 65    	 145		
+007     C  Brick Break              40 	35   	 146		
+004     C  Swift                    60 	55    	 147		
+004     C  Horn Attack              40 	35   	 148		
+004     C  Stomp                 55 	40   	 149	
+004     C  Hyper Fang               80 	50   	 150		
+004     C  Body Slam                60 	35   	 151		
+004     C  Rest                  	50 	35   	 152	
+004     C  Struggle                 35 	100   	 153		
+009     C  Scald (Blastoise)        50 	80    	 154		
+009     C  Hydro Pump (Blastoise)   90 	80    	 155		
+004     C  Wrap (Green)          	25 	45   	 156		
+004     C  Wrap (Pink)           	25 	45   	 157	
+007     C  Close Combat             100 60    	 158	
+007     C  Dynamic Punch            90 	50   	 159		
+007     C  Focus Blast              150 75    	 160	
+012     C  Aurora Beam           	80 	60    	 161		
+010     C  Wild Charge              90 	50   	 162		
+010     C  Zap Cannon               150 80    	 163	
+012     C  Avalanche             	90 	45   	 164		
+017     C  Brave Bird               90 	55    	 165		
+017     C  Sky Attack               80 	45   	 166		
+003     C  Sand Tomb             	80 	60    	 167	
+005     C  Rock Blast            	50 	40   	 168		
+011     C  Silver Wind              70 	45       169 
+015     C  Night Shade              60 	55    	 170		
+013     C  Gyro Ball             80 	60    	 171		
+013     C  Heavy Slam            	70 	50   	 172		
+001     C  Overheat              	150 80    	 173		
+002     C  Grass Knot            90 	50   	 174		
+002     C  Energy Ball              90 	60    	 175		
+018     C  Future Sight             120 65    	 176		
+018     C  Mirror Coat             60 	55    	 177		
+016     C  Outrage                	110 60    	 178		
+014     C  Crunch                   70 	45       179			
+014     C  Foul Play             	70 	45   	 180		
+009     C  Surf                    	65 	40   	 181		
+016     C  Draco Meteor          150 75    		 182	
+013     C  Doom Desire           	80 	35   	 183		
+018     C  Psycho Boost             70 	40   	 184		
+009     C  Origin Pulse          130 60    		 185	
+003     C  Precipice Blades         130 60    	 186		
+001     C  Weather Ball          60 	35   	     187		
+012     C  Weather Ball          	60 	35   	 188		
+004     C  Weather Ball          	60 	35   	 189		
+009     C  Weather Ball          60 	35   	     190		
+002     C  Frenzy Plant          	100 45   	 191		
+001     C  Blast Burn               110 50   	 192		
+009     C  Hydro Cannon          	90 	40   	 193		
+004     C  Last Resort           90 	55    		 194	
+013     C  Meteor Mash           100	50   	     195		
+004     C  Skull Bash            	130	75    	 196
+008     C  Acid Spray               20 	50   	 197
+003     C  Earth Power           90 	55    	     198
+009     C  Crabhammer            75 	50   	     199
+002     C  Leaf Tornado          45 	40   	     200
+009     C  Muddy Water           	35 	35   	 201
+001     C  Blaze Kick            	55 	40   	 202	
+007     C  Power-Up Punch           40 	35   	 203
+004     C  Frustration              10 	40   	 204		
+004     C  Return                	50 	40   	 205		
+018     C  Synchronoise             80 	50       206
