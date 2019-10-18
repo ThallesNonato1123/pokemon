@@ -1,33 +1,43 @@
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
 #define numPokemon 151 // 151 Pokemons, criada para o ler os status dos respectivos Pokemons no laço for
 
-typedef struct{
+void asterisco()
+{
+    printf("\n");
+    for (int i = 0; i < 50 ; i++)
+        printf("*");
+    printf("\n");
+}
+
+typedef struct 
+{
     int t_golpe[16];  // tipo de golpe (fire, grass...)
     float g_energia; // ganho de energia
     char nomeGolpe[210], modoGolpe[210]; // modo: rápido ou carregado
     float f_golpe;
 }Golpes; //struct criada para armazenar os dados dos Golpes: força, tipo, ganho de energia, nome do golpe e modo do Golpe (rápido ou carregado)
 
-typedef struct {
+typedef struct 
+{
     float lvl;
     char nome[51];
-    int num,speed,tipo1[20],tipo2[20];
+    unsigned  num,speed,tipo1[10],tipo2[10];
     float ataque, defesa, stamina,hp;
     int numAtk[7];
     Golpes fGolpe;
 }Pokemon;
 
-typedef struct {
+typedef struct 
+{
     Pokemon poke[3];
     Golpes TmodoGolpe;
-}treinador;
+}Treinador;
 
 Pokemon monstro[numPokemon];
 Golpes ataque[207];
 
-void Read_Data() 
+Pokemon Read_Data() 
 { //função para ler os dados dos pokèmons
     FILE *status; // arquivo "Pokemon.txt" com os dados dos pokèmons
     status = fopen("pokemon.txt", "r");
@@ -35,7 +45,7 @@ void Read_Data()
         printf("Erro na abertura de Pokemóns\n");
     }
         for (int i = 1 ; i < numPokemon ; i++) { // loop para pegar os dados dos 151 pokèmons %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            fscanf(status, "%d %s %f %f %f %d %d", &monstro[i].num, monstro[i].nome, &monstro[i].stamina, &monstro[i].ataque, &monstro[i].defesa, monstro[i].tipo1, monstro[i].tipo2);
+            fscanf(status, "%d %s %f %f %f %d %d", &monstro[i].num, &monstro[i].nome, &monstro[i].stamina, &monstro[i].ataque, &monstro[i].defesa, &monstro[i].tipo1, &monstro[i].tipo2);
         }
     fclose(status);
 }
@@ -72,8 +82,7 @@ void LerGolpe()
         printf("Erro na abertura do arquivo\n");
     }
     for(int i = 0 ; i < 207 ; i++) {
-        fscanf(polgues, "%d", ataque[i].t_golpe);
-        fscanf(polgues,"%c",ataque[i].modoGolpe);
+        fscanf(polgues, "%d %c", &ataque[i].t_golpe, &ataque[i].modoGolpe);
         fgets(ataque[i].nomeGolpe, 23, polgues);
         fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
     }
@@ -82,13 +91,14 @@ void LerGolpe()
 
 Pokemon EscolhePokemon()  
 {   
+    int numPok;
     Pokemon p;
     printf("Escolha 3 pokemons\n");
     printf("Digite o valor correspondente ao Pokemon e o seu nivel: ");
     int num;
     while (1) 
     {
-        scanf("%d", &num); //  numero correspondente ao pokèmon escolhido e lvl do pokèmon
+        scanf("%d", &num); //  numero correspondente ao pokèmon escolhido e level do pokèmon
         if (num < 0 || num > 151) // para controlar a escolha de pokèmon
         { 
             printf("Pokemon invalido\n");
@@ -106,20 +116,16 @@ void TransfereDados()
 {
     FILE *dadosPoke;
     dadosPoke = fopen("ataque_cada_Pokemon_1-1", "r");
-    for(int i = 0 ; i < 150 ; i++) { // 150 pois o Mew é diferente dos demais
-    fscanf(dadosPoke, "%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
+    for(int i = 0 ; i < 150 ; i++) { // 150 pois o Mew é diferente dos demais por possuir mais ataques
+        fscanf(dadosPoke, "%d %d %d %d %d %d", monstro[i].numAtk[0], monstro[i].numAtk[1], monstro[i].numAtk[2], monstro[i].numAtk[3], monstro[i].numAtk[4], monstro[i].numAtk[5], monstro[i].numAtk[6]);
     }
 }
-void EscolheGolpe(Pokemon monstro) // trabalhando nele
+void EscolheGolpe()
 {
     FILE *ataquePokemon;
     ataquePokemon = fopen("ataques.txt", "r");
-    for(int i=0; i<6;i++){
-            for(int j=0; j<207;j++){            
-               if(monstro.numAtk[i] ==)
-           }
-        }
-    }
+    
+}
 
 
 int main () {
@@ -129,4 +135,3 @@ int main () {
     printf("%s %.2f\n", A.nome, A.hp);
     return 0;
 }
-
