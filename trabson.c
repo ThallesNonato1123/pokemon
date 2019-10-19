@@ -120,7 +120,7 @@ void EscolheGolpe(Pokemon escolhido)
     printf("Escolha o Golpe: \n");
     for(int i=0; i<7;i++){
             for(int j=0; j<207;j++){            
-                if(&escolhido.numAtk[i] == ataque[j].numGolpe){
+                if(&escolhido.numAtk[i] == *ataque[j].numGolpe){
                     GolpesPossiveis[i] = ataque[j];
                     }
                 }
