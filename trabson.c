@@ -9,35 +9,32 @@ void asterisco()
         printf("*");
     printf("\n");
 }
-
-typedef struct 
-{
+typedef struct{
     int t_golpe[16];  // tipo de golpe (fire, grass...)
     float g_energia; // ganho de energia
     char nomeGolpe[210], modoGolpe[210]; // modo: rápido ou carregado
     float f_golpe;
+    int numGolpe[206];
 }Golpes; //struct criada para armazenar os dados dos Golpes: força, tipo, ganho de energia, nome do golpe e modo do Golpe (rápido ou carregado)
 
-typedef struct 
-{
+typedef struct {
     float lvl;
     char nome[51];
-    unsigned  num,speed,tipo1[10],tipo2[10];
+    int num,speed,tipo1[20],tipo2[20];
     float ataque, defesa, stamina,hp;
-    int numAtk[7];
-    Golpes fGolpe;
+    int numAtk[6];
+    Golpes fGolpe[2];
 }Pokemon;
 
-typedef struct 
-{
+typedef struct {
     Pokemon poke[3];
     Golpes TmodoGolpe;
-}Treinador;
+}treinador;
 
 Pokemon monstro[numPokemon];
-Golpes ataque[207];
+Golpes  ataque[207];
 
-Pokemon Read_Data() 
+void Read_Data() 
 { //função para ler os dados dos pokèmons
     FILE *status; // arquivo "Pokemon.txt" com os dados dos pokèmons
     status = fopen("pokemon.txt", "r");
@@ -45,7 +42,7 @@ Pokemon Read_Data()
         printf("Erro na abertura de Pokemóns\n");
     }
         for (int i = 1 ; i < numPokemon ; i++) { // loop para pegar os dados dos 151 pokèmons %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            fscanf(status, "%d %s %f %f %f %d %d", &monstro[i].num, &monstro[i].nome, &monstro[i].stamina, &monstro[i].ataque, &monstro[i].defesa, &monstro[i].tipo1, &monstro[i].tipo2);
+            fscanf(status, "%d %s %f %f %f %d %d", &monstro[i].num, monstro[i].nome, &monstro[i].stamina, &monstro[i].ataque, &monstro[i].defesa, monstro[i].tipo1, monstro[i].tipo2);
         }
     fclose(status);
 }
@@ -57,10 +54,10 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
         while (p1[i].hp > 0 && p2[j].hp > 0) {
             if (bate == 0) { // P2[j] sofre dano
-               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe.f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[i].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
                 bate = 1;
                 } else { // P1[i] sofre dano
-                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[j].fGolpe.f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[j].fGolpe[i].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
                 bate = 0;
                 }
           }
@@ -77,61 +74,72 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 void LerGolpe()
 {
     FILE *polgues; // arquivo Golpes
-    polgues = fopen("Golpes.txt", "r"); //recebe os dados do golpe
+    polgues = fopen("ataques.txt", "r"); //recebe os dados do golpe
     if(polgues == NULL) {
         printf("Erro na abertura do arquivo\n");
     }
     for(int i = 0 ; i < 207 ; i++) {
-        fscanf(polgues, "%d %c", &ataque[i].t_golpe, &ataque[i].modoGolpe);
+        fscanf(polgues, "%d", ataque[i].t_golpe);
+        fscanf(polgues,"%c",ataque[i].modoGolpe);
         fgets(ataque[i].nomeGolpe, 23, polgues);
         fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
+        fscanf(polgues,"%d",ataque[i].numGolpe);
     }
     fclose(polgues);
 }
 
 Pokemon EscolhePokemon()  
 {   
-    int numPok;
     Pokemon p;
-    printf("Escolha 3 pokemons\n");
-    printf("Digite o valor correspondente ao Pokemon e o seu nivel: ");
     int num;
-    while (1) 
-    {
-        scanf("%d", &num); //  numero correspondente ao pokèmon escolhido e level do pokèmon
-        if (num < 0 || num > 151) // para controlar a escolha de pokèmon
+       scanf("%d", &num); //  numero correspondente ao pokèmon escolhido e lvl do pokèmon
+       if (num < 0 || num > 151) // para controlar a escolha de pokèmon
         { 
             printf("Pokemon invalido\n");
-            continue;
         }
-        break;
-    }
         scanf ("%f", &monstro[num].lvl);
         monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
         p=monstro[num];
         return p;
 }
 
-void TransfereDados()
+ void TransfereDados()
 {
     FILE *dadosPoke;
-    dadosPoke = fopen("ataque_cada_Pokemon_1-1", "r");
-    for(int i = 0 ; i < 150 ; i++) { // 150 pois o Mew é diferente dos demais por possuir mais ataques
-        fscanf(dadosPoke, "%d %d %d %d %d %d", monstro[i].numAtk[0], monstro[i].numAtk[1], monstro[i].numAtk[2], monstro[i].numAtk[3], monstro[i].numAtk[4], monstro[i].numAtk[5], monstro[i].numAtk[6]);
+    dadosPoke = fopen("ataque_cada_Pokemon_1", "r");
+    if(dadosPoke == NULL){
+        printf("Erro na abertura dos dados de cada pokémon");
+        }
+    for(int i = 0 ; i < 150 ; i++) { // 150 pois o Mew é diferente dos demais
+    fscanf(dadosPoke, "%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);     
     }
 }
-void EscolheGolpe()
+void EscolheGolpe(Pokemon escolhido)
 {
-    FILE *ataquePokemon;
-    ataquePokemon = fopen("ataques.txt", "r");
+    Golpes GolpesPossiveis[7];
+    printf("Escolha o Golpe: \n");
+    for(int i=0; i<7;i++){
+            for(int j=0; j<207;j++){            
+                if(&escolhido.numAtk[i] == ataque[j].numGolpe){
+                    GolpesPossiveis[i] = ataque[j];
+                    }
+                }
+              printf("%s\n",GolpesPossiveis[i].nomeGolpe);
+             }
     
-}
+}       
 
 
 int main () {
-    Pokemon A;
+    Pokemon A[3];
     Read_Data();
-    A = EscolhePokemon();
-    printf("%s %.2f\n", A.nome, A.hp);
+    LerGolpe();
+    TransfereDados();
+    printf("Escolha 3 pokemons\n");
+    printf("Digite o valor correspondente ao Pokemon e o seu nivel: ");
+    for(int i=0;i<3;i++){
+        A[i] = EscolhePokemon();
+        EscolheGolpe(A[i]);
+    }
     return 0;
 }
