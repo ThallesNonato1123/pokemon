@@ -100,6 +100,7 @@ Pokemon EscolhePokemon()
         scanf ("%f", &monstro[num].lvl);
         monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
         p=monstro[num];
+        printf("Você escolheu %s! \n",p.nome);
         return p;
 }
 
@@ -128,7 +129,8 @@ void EscolheGolpe(Pokemon escolhido)
                     }
                 }
               if(*GolpesPossiveis[i].numGolpe != 0)
-                printf("%d ",*GolpesPossiveis[i].numGolpe);
+
+                printf("%d-%s\n",i+1,GolpesPossiveis[i].nomeGolpe);
              }
     
 }       
