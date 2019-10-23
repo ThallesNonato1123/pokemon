@@ -140,9 +140,9 @@ void EscolheGolpe(Pokemon escolhido) // dando pelé -----------------
     Golpes GolpesPossiveis[6];
     int NumGolpe,NumGolpee;
     printf("Escolha o Golpe: \n");
-    int i;
+    int i, j;
     for(i = 0 ; i < 7 ; i++) {
-        for(int j=0; j<207;j++){            
+        for(j = 0 ; j < 207 ; j++) {            
             if(escolhido.numAtk[i] == *ataque[j].numGolpe){
                 GolpesPossiveis[i] = ataque[j];
             }
