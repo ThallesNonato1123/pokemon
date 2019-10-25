@@ -86,9 +86,9 @@ void TransfereDados()
 
 int LerClima(){
     int climaEscolhido;
-    printf("\nEscolha o clima da batalha: \n");
-    printf("1-Clear/Sunny\n2-Party Cloud\n3-Cloudy\n4-Rain\n5-Snow\n6-Fog\n7-Windy\n");
-    scanf("%d",&climaEscolhido);
+    printf("\nEscolha o clima da batalha:\n");
+    printf("1 - Clear/Sunny\n2 - Party Cloud\n3 - Cloudy\n4 - Rain\n5 - Snow\n6 - Fog\n7 - Windy\n\n");
+    scanf("%d\n", &climaEscolhido);
     return climaEscolhido;
 }
 
