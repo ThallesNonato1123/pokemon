@@ -61,10 +61,10 @@ void LerGolpe()
     int i;
     for (i = 0 ; i < 207 ; i++) {
         fscanf(polgues, "%d", ataque[i].t_golpe);
-        fscanf(polgues,"%c",ataque[i].modoGolpe);
+        fscanf(polgues,"%c", ataque[i].modoGolpe);
         fgets(ataque[i].nomeGolpe, 23, polgues);
         fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
-        fscanf(polgues,"%d",ataque[i].numGolpe);
+        fscanf(polgues,"%d", ataque[i].numGolpe);
     }
     fclose(polgues);
 }
@@ -92,7 +92,7 @@ int LerClima(){
     return climaEscolhido;
 }
 
-int BonusClima(int a,Pokemon escolhido){
+int BonusClima(int a, Pokemon escolhido){
     if( a == 1 && (*escolhido.tipo1 == 1 || *escolhido.tipo2 == 8))
         printf("vantagem\n");
     
@@ -136,8 +136,8 @@ void EscreveNomePokemon() // NÃO TERMINADA ---------------------
 void EscolheGolpe(Pokemon escolhido) // ver parada do strcmp
 {
     Golpes GolpesPossiveis[6];
-    int numEscolhidoC,numEscolhidoR;
-    printf("Golpes possíveis para %s: \n",escolhido.nome);
+    int numEscolhidoC, numEscolhidoR;
+    printf("Golpes possíveis para %s: \n", escolhido.nome);
     int i, j;
     for(i = 0 ; i < 7 ; i++) {
         for(j = 0 ; j < 207 ; j++) {            
@@ -146,26 +146,26 @@ void EscolheGolpe(Pokemon escolhido) // ver parada do strcmp
             }
         }
         if (*GolpesPossiveis[i].numGolpe != 0)
-            printf("%d- %s%s\n",i+1,GolpesPossiveis[i].modoGolpe,GolpesPossiveis[i].nomeGolpe);
+            printf("%d- %s%s\n", i+1, GolpesPossiveis[i].modoGolpe, GolpesPossiveis[i].nomeGolpe);
     }
         printf("\nEscolha um Golpe rapido: ");
-        scanf("%d",&numEscolhidoR);
+        scanf("%d", &numEscolhidoR);
         //if(strcmp(GolpesPossiveis[numEscolhidoR-1].modoGolpe,"C")==0)
-        printf("\nVocê escolheu o golpe:%s \n",GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
+        printf("\nVocê escolheu o golpe:%s \n", GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
         printf("\nEscolha um golpe carregado: ");
         scanf("%d",&numEscolhidoC);
-        printf("\nVocê escolheu o golpe:%s \n",GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
-        escolhido.fGolpe[0]=GolpesPossiveis[numEscolhidoR-1];
-        escolhido.fGolpe[1]=GolpesPossiveis[numEscolhidoC-1];
+        printf("\nVocê escolheu o golpe:%s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
+        escolhido.fGolpe[0] = GolpesPossiveis[numEscolhidoR-1];
+        escolhido.fGolpe[1] = GolpesPossiveis[numEscolhidoC-1];
 }       
 
-Golpes selecionaGolpe(Pokemon escolhido) // pq n ta aparecendo os fGolpe
+Golpes selecionaGolpe(Pokemon escolhido) // porque nao ta aparecendo os fGolpe
 {
     Golpes aux;
     int golpeselecionado;
-    printf("Selecione o golpe que vai usar:\n1-%s\n2-%s",escolhido.fGolpe[0].nomeGolpe,escolhido.fGolpe[1].nomeGolpe);
+    printf("Selecione o golpe que vai usar:\n1-%s\n2-%s", escolhido.fGolpe[0].nomeGolpe,escolhido.fGolpe[1].nomeGolpe);
     scanf("%d",&golpeselecionado);
-    aux.f_golpe=escolhido.fGolpe[golpeselecionado-1].f_golpe;
+    aux.f_golpe = escolhido.fGolpe[golpeselecionado-1].f_golpe;
     return aux;
 }
 
@@ -199,9 +199,9 @@ int main () {
     TransfereDados();
     Read_Data();
     LerGolpe();
-    A=EscolhePokemon();
-    b=LerClima();
-    BonusClima(b,A);
+    A = EscolhePokemon();
+    b = LerClima();
+    BonusClima(b, A);
     EscolheGolpe(A);
     
     return 0;
