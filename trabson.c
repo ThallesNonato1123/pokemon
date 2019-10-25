@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #define numPokemon 151 // 151 Pokemons, criada para o ler os status dos respectivos Pokemons no laço for
 
 void asterisco()
@@ -31,6 +32,7 @@ typedef struct {
     Pokemon poke[3];
     Golpes TmodoGolpe;
 }treinador;
+
 
 Pokemon monstro[numPokemon];
 Golpes  ataque[207];
@@ -120,7 +122,7 @@ Pokemon EscolhePokemon()
         return p;
 }
 
-void TransfereDados() // dando pelé -----------------------------
+void TransfereDados()
 {    
     FILE *dadosPoke;
     Read_Data();
@@ -129,42 +131,54 @@ void TransfereDados() // dando pelé -----------------------------
         printf("Erro na abertura do dadosPoke\n");
     }
     int i;
-    for(i = 1 ; i < numPokemon ; i++) {
-        fscanf (dadosPoke,"%d %d %d %d %d %d %d",&monstro[i].numAtk[0],&monstro[i].numAtk[1],&monstro[i].numAtk[2],&monstro[i].numAtk[3],&monstro[i].numAtk[4],&monstro[i].numAtk[5],&monstro[i].numAtk[6]);
+    for (i = 1 ; i < numPokemon ; i++) {
+        fscanf(dadosPoke,"%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
     }
     fclose(dadosPoke);
 }
 
-void EscolheGolpe(Pokemon escolhido) // dando pelé -----------------
+void EscolheGolpe(Pokemon escolhido)
 {
     Golpes GolpesPossiveis[6];
-    int NumGolpe,NumGolpee;
-    printf("Escolha o Golpe: \n");
+    int numEscolhidoC,numEscolhidoR;
+    printf("Golpes possíveis para %s: \n",escolhido.nome);
     int i, j;
     for(i = 0 ; i < 7 ; i++) {
         for(j = 0 ; j < 207 ; j++) {            
-            if(escolhido.numAtk[i] == *ataque[j].numGolpe){
+            if(escolhido.numAtk[i] == *ataque[j].numGolpe) {
                 GolpesPossiveis[i] = ataque[j];
             }
         }
-        if(*GolpesPossiveis[i].numGolpe != 0)
-            printf("%d-%s\n",i+1,GolpesPossiveis[i].nomeGolpe);
+        if (*GolpesPossiveis[i].numGolpe != 0)
+            printf("%d- %s%s\n",i+1,GolpesPossiveis[i].modoGolpe,GolpesPossiveis[i].nomeGolpe);
     }
-    printf("Escolha o golpe rapido do seu pokemon:\n ");
-    scanf("%d",&NumGolpe);
-    escolhido.fGolpe[0] = GolpesPossiveis[NumGolpe-1];
-    printf("Escolha o golpe carregado do seu pokemon:\n ");
-    scanf("%d", &NumGolpee);
-    escolhido.fGolpe[1] = GolpesPossiveis[NumGolpee-1];
-    printf("%s", escolhido.fGolpe[1].nomeGolpe);
+        printf("Escolha um Golpe rapido: ");
+        scanf("%d",&numEscolhidoR);
+        //if(strcmp(GolpesPossiveis[numEscolhidoR-1].modoGolpe,"C")==0)
+        printf("Você escolheu o golpe:%s \n",GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
+        printf("Escolha um golpe carregado: ");
+        scanf("%d",&numEscolhidoC);
+        printf("Você escolheu o golpe:%s \n",GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
+        escolhido.fGolpe[0]=GolpesPossiveis[numEscolhidoR-1];
+        escolhido.fGolpe[1]=GolpesPossiveis[numEscolhidoC-1];
+}       
+Golpes selecionaGolpe(Pokemon escolhido)
+{
+    Golpes aux;
+    int golpeselecionado;
+    printf("Selecione o golpe que vai usar:\n1-%s\n2-%s",escolhido.fGolpe[0].nomeGolpe,escolhido.fGolpe[1].nomeGolpe);
+    scanf("%d",&golpeselecionado);
+    aux.f_golpe=escolhido.fGolpe[golpeselecionado-1].f_golpe;
+    return aux;
 }
-    
+
 int main () {
     Pokemon A;
     TransfereDados();
     Read_Data();
     LerGolpe();
-    A = EscolhePokemon();
+    A=EscolhePokemon();
     EscolheGolpe(A);
+    
     return 0;
 }
