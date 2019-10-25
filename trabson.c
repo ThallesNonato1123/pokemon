@@ -7,9 +7,9 @@
 void asterisco()
 {
     printf("\n");
-    for (int i = 0; i < 50 ; i++)
+    for (int i = 0; i < 80 ; i++)
         printf("*");
-    printf("\n");
+    printf("\n\n");
 }
 typedef struct{
     int t_golpe[16];  // tipo de golpe (fire, grass...)
@@ -102,16 +102,22 @@ Pokemon EscolhePokemon()
 {   
     Pokemon p;
     int num;
-       scanf("%d", &num); //  numero correspondente ao pokèmon escolhido e lvl do pokèmon
-       if (num < 0 || num > 151) // para controlar a escolha de pokèmon
-        { 
+    while(1) { // laço para controlar a seleção de Pokemon
+        printf("Digite o numero correspondente ao Pokemon desejado: ");
+        scanf("%d", &num); //  número correspondente ao Pokèmon desejado
+        if (num < 0 || num > 151)
             printf("Pokemon invalido\n");
-        }
-        scanf ("%f", &monstro[num].lvl);
-        monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
-        p = monstro[num];
-        printf("Você escolheu %s! \n",p.nome);
-        return p;
+        else
+            break;
+    }
+    asterisco();
+    printf("Digite o nivel do Pokemon escolhido: ");
+    scanf ("%f", &monstro[num].lvl);
+    asterisco();
+    monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
+    p = monstro[num];
+    printf("Você escolheu %s! \n", p.nome);
+    return p;
 }
 
 void EscreveNomePokemon() // NÃO TERMINADA ---------------------
