@@ -96,8 +96,6 @@ int LerClima(){
 
 float BonusClima(int a,Pokemon escolhido){
     
-    danoEx=(escolhido.fGolpe[golpeselecionado-1].f_golpe);
-    
     if( a == 1 && (*escolhido.tipo1 == 1 || *escolhido.tipo2 == 1 || *escolhido.tipo1 == 2 || *escolhido.tipo2 == 2 || *escolhido.tipo1 == 3 || *escolhido.tipo2 == 3  ))
         escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
     
@@ -120,7 +118,7 @@ float BonusClima(int a,Pokemon escolhido){
         escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
     }
 
-    return escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+    return escolhido.fGolpe[golpeselecionado-1].f_golpe;
 
 }
 
