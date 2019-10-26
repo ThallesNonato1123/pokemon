@@ -7,9 +7,9 @@
 void asterisco()
 {
     printf("\n");
-    for (int i = 0; i < 80 ; i++)
+    for (int i = 0; i < 50 ; i++)
         printf("*");
-    printf("\n\n");
+    printf("\n");
 }
 typedef struct{
     int t_golpe[16];  // tipo de golpe (fire, grass...)
@@ -36,6 +36,8 @@ typedef struct {
 
 Pokemon monstro[numPokemon];
 Golpes  ataque[207];
+int golpeselecionado;
+double danoEx;
 
 void Read_Data() 
 { //função para ler os dados dos pokèmons
@@ -61,10 +63,10 @@ void LerGolpe()
     int i;
     for (i = 0 ; i < 207 ; i++) {
         fscanf(polgues, "%d", ataque[i].t_golpe);
-        fscanf(polgues,"%c", ataque[i].modoGolpe);
+        fscanf(polgues,"%c",ataque[i].modoGolpe);
         fgets(ataque[i].nomeGolpe, 23, polgues);
         fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
-        fscanf(polgues,"%d", ataque[i].numGolpe);
+        fscanf(polgues,"%d",ataque[i].numGolpe);
     }
     fclose(polgues);
 }
@@ -86,16 +88,40 @@ void TransfereDados()
 
 int LerClima(){
     int climaEscolhido;
-    printf("\nEscolha o clima da batalha:\n");
-    printf("1 - Clear/Sunny\n2 - Party Cloud\n3 - Cloudy\n4 - Rain\n5 - Snow\n6 - Fog\n7 - Windy\n\n");
-    scanf("%d\n", &climaEscolhido);
+    printf("\nEscolha o clima da batalha: \n");
+    printf("1-Clear/Sunny\n2-Party Cloud\n3-Cloudy\n4-Rain\n5-Snow\n6-Fog\n7-Windy\n");
+    scanf("%d",&climaEscolhido);
     return climaEscolhido;
 }
 
-int BonusClima(int a, Pokemon escolhido){
-    if( a == 1 && (*escolhido.tipo1 == 1 || *escolhido.tipo2 == 8))
-        printf("vantagem\n");
+float BonusClima(int a,Pokemon escolhido){
     
+    danoEx=(escolhido.fGolpe[golpeselecionado-1].f_golpe);
+    
+    if( a == 1 && (*escolhido.tipo1 == 1 || *escolhido.tipo2 == 1 || *escolhido.tipo1 == 2 || *escolhido.tipo2 == 2 || *escolhido.tipo1 == 3 || *escolhido.tipo2 == 3  ))
+        escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+    
+    if( a == 2 && (*escolhido.tipo1 == 4 || *escolhido.tipo2 == 4 || *escolhido.tipo1 == 5 || *escolhido.tipo2 == 5))
+        escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+    
+    if( a == 3 && (*escolhido.tipo1 == 6 || *escolhido.tipo2 == 6 || *escolhido.tipo1 == 7 || *escolhido.tipo2 == 7 || *escolhido.tipo1 == 8 || *escolhido.tipo2 == 8  ))
+        escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+    
+    if( a == 4 && (*escolhido.tipo1 == 9 || *escolhido.tipo2 == 9 || *escolhido.tipo1 == 10 || *escolhido.tipo2 == 10 || *escolhido.tipo1 == 11 || *escolhido.tipo2 == 11  ))
+        escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+    
+    if( a == 5 && (*escolhido.tipo1 == 12 || *escolhido.tipo2 == 12 || *escolhido.tipo1 == 13 || *escolhido.tipo2 == 13))
+        escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+    
+    if( a == 6 && (*escolhido.tipo1 == 14 || *escolhido.tipo2 == 14 || *escolhido.tipo1 == 15 || *escolhido.tipo2 == 15))
+        escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+    
+    if( a == 7 && (*escolhido.tipo1 == 16 || *escolhido.tipo2 == 16 || *escolhido.tipo1 == 17 || *escolhido.tipo2 == 17 || *escolhido.tipo1 == 18 || *escolhido.tipo2 == 18 )){
+        escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+    }
+
+    return escolhido.fGolpe[golpeselecionado-1].f_golpe*=1.3;
+
 }
 
 Pokemon EscolhePokemon()  
@@ -136,8 +162,8 @@ void EscreveNomePokemon() // NÃO TERMINADA ---------------------
 void EscolheGolpe(Pokemon escolhido) // ver parada do strcmp
 {
     Golpes GolpesPossiveis[6];
-    int numEscolhidoC, numEscolhidoR;
-    printf("Golpes possíveis para %s: \n", escolhido.nome);
+    int numEscolhidoC,numEscolhidoR;
+    printf("Golpes possíveis para %s: \n",escolhido.nome);
     int i, j;
     for(i = 0 ; i < 7 ; i++) {
         for(j = 0 ; j < 207 ; j++) {            
@@ -146,30 +172,29 @@ void EscolheGolpe(Pokemon escolhido) // ver parada do strcmp
             }
         }
         if (*GolpesPossiveis[i].numGolpe != 0)
-            printf("%d- %s%s\n", i+1, GolpesPossiveis[i].modoGolpe, GolpesPossiveis[i].nomeGolpe);
+            printf("%d- %s%s\n",i+1,GolpesPossiveis[i].modoGolpe,GolpesPossiveis[i].nomeGolpe);
     }
         printf("\nEscolha um Golpe rapido: ");
-        scanf("%d", &numEscolhidoR);
+        scanf("%d",&numEscolhidoR);
         //if(strcmp(GolpesPossiveis[numEscolhidoR-1].modoGolpe,"C")==0)
-        printf("\nVocê escolheu o golpe:%s \n", GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
+        printf("\nVocê escolheu o golpe:%s \n",GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
         printf("\nEscolha um golpe carregado: ");
         scanf("%d",&numEscolhidoC);
-        printf("\nVocê escolheu o golpe:%s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
-        escolhido.fGolpe[0] = GolpesPossiveis[numEscolhidoR-1];
-        escolhido.fGolpe[1] = GolpesPossiveis[numEscolhidoC-1];
+        printf("\nVocê escolheu o golpe:%s \n",GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
+        escolhido.fGolpe[0]=GolpesPossiveis[numEscolhidoR-1];
+        escolhido.fGolpe[1]=GolpesPossiveis[numEscolhidoC-1];
 }       
 
-Golpes selecionaGolpe(Pokemon escolhido) // porque nao ta aparecendo os fGolpe
+Golpes selecionaGolpe(Pokemon escolhido) // pq n ta aparecendo os fGolpe
 {
     Golpes aux;
-    int golpeselecionado;
-    printf("Selecione o golpe que vai usar:\n1-%s\n2-%s", escolhido.fGolpe[0].nomeGolpe,escolhido.fGolpe[1].nomeGolpe);
+    printf("Selecione o golpe que vai usar:\n1-%s\n2-%s",escolhido.fGolpe[0].nomeGolpe,escolhido.fGolpe[1].nomeGolpe);
     scanf("%d",&golpeselecionado);
-    aux.f_golpe = escolhido.fGolpe[golpeselecionado-1].f_golpe;
+    aux.f_golpe=escolhido.fGolpe[golpeselecionado-1].f_golpe;
     return aux;
 }
 
-void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
+void Battle(Pokemon p1[], Pokemon p2[]) // Não terminado
 {
     int i = 0, j = 0;
     while (i < 3 && j < 3) {
@@ -199,10 +224,12 @@ int main () {
     TransfereDados();
     Read_Data();
     LerGolpe();
-    A = EscolhePokemon();
-    b = LerClima();
-    BonusClima(b, A);
+    A=EscolhePokemon();
+    b=LerClima();
     EscolheGolpe(A);
+    selecionaGolpe(A);
+    BonusClima(b,A);
+    
     
     return 0;
 }
