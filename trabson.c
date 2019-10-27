@@ -7,7 +7,8 @@
 void asterisco()
 {
     printf("\n");
-    for (int i = 0; i < 80 ; i++)
+    int i;
+    for (i = 0; i < 80 ; i++)
         printf("*");
     printf("\n\n");
 }
