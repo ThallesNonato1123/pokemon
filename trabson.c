@@ -21,9 +21,9 @@ void asterisco()
 typedef struct{
     int t_golpe[16];  // tipo de golpe (fire, grass...)
     float g_energia; // ganho de energia
-    char nomeGolpe[210], modoGolpe[210]; // modo: rápido ou carregado
+    char nomeGolpe[210], modoGolpe; // modo: rápido ou carregado
     float f_golpe;
-    int numGolpe[206];
+    int numGolpe;
 }Golpes; //struct criada para armazenar os dados dos Golpes: força, tipo, ganho de energia, nome do golpe e modo do Golpe (rápido ou carregado)
 
 typedef struct {
@@ -70,10 +70,10 @@ void LerGolpe()
     int i;
     for (i = 0 ; i < 207 ; i++) {
         fscanf(polgues, "%d", ataque[i].t_golpe);
-        fscanf(polgues, "%c", ataque[i].modoGolpe);
+        fscanf(polgues, "%c", &ataque[i].modoGolpe);
         fgets(ataque[i].nomeGolpe, 23, polgues);
         fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
-        fscanf(polgues, "%d", ataque[i].numGolpe);
+        fscanf(polgues, "%d", &ataque[i].numGolpe);
     }
     fclose(polgues);
 }
@@ -196,15 +196,48 @@ void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) {
     
     for(i = 0 ; i < 7 ; i++) {
         if (escolhido->numAtk[i] == 208) {
-            *GolpesPossiveis[i].numGolpe = 208;
+            GolpesPossiveis[i].numGolpe = 208;
             break;
         }
     
         GolpesPossiveis[i] = ataque[escolhido->numAtk[i]];
-        if (*GolpesPossiveis[i].numGolpe != 208)
-            printf("%d - %s%s\n", i+1, GolpesPossiveis[i].modoGolpe, GolpesPossiveis[i].nomeGolpe);
+        if (GolpesPossiveis[i].numGolpe != 208)
+            printf("%d - %c%s\n", i+1, GolpesPossiveis[i].modoGolpe, GolpesPossiveis[i].nomeGolpe);
     }
 }
+
+int getBound(Golpes possiveis[7]){
+    for (int i = 0; i < 7; i++) {
+        if (possiveis[i].numGolpe == 208)
+        return i;
+    }
+    return 7;
+}
+
+int ValidaEntrada(char target, char* msg, Golpes possiveis[7]) {
+    int input = 0;
+    while(1) {
+        printf("%s", msg);
+        if (!scanf("%d", &input)) {
+            printf("Entrada invalida!\n");
+            getchar();
+            continue;
+        }
+
+        if (input < 1 || input > getBound(possiveis)) {
+            printf("Numero invalido!\n");
+            continue;
+        }
+
+        if(possiveis[input-1].modoGolpe != target) {
+            printf("Esse golpe nao eh do tipo correto!\n");
+        } else
+            return input;
+    }
+
+    return -1;
+}
+
 
 void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
 {
@@ -213,27 +246,19 @@ void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
 
     printf("Golpes possíveis para %s:\n", escolhido->nome);
     MostraGolpes(escolhido, GolpesPossiveis);
-    // int i, j;
-    // for(i = 0 ; i < 7 ; i++) {
-    //     if (escolhido->numAtk[i] == 208)
-    //         break;
+    
 
-    //     for(j = 0 ; j < 207 ; j++) {            
-    //         if(escolhido->numAtk[i] == *ataque[j].numGolpe) {
-    //             GolpesPossiveis[i] = ataque[j];
-    //             break;
-    //         }
-    //     }
-    //     if (*GolpesPossiveis[i].numGolpe != 0)
-    //         printf("%d - %s%s\n", i+1, GolpesPossiveis[i].modoGolpe, GolpesPossiveis[i].nomeGolpe);
-    // }
-    printf("\nEscolha um Golpe rapido: ");
-    scanf("%d", &numEscolhidoR);
-    //if(strcmp(GolpesPossiveis[numEscolhidoR-1].modoGolpe,"C")==0)
+    numEscolhidoR = ValidaEntrada('R', "\nEscolha um Golpe rapido: ", GolpesPossiveis);
+    if (numEscolhidoR == -1) exit(1);
     printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
-    printf("\nEscolha um golpe carregado: ");
-    scanf("%d",&numEscolhidoC);
-    printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
+
+    numEscolhidoC = ValidaEntrada('C', "\nEscolha um golpe carregado: ", GolpesPossiveis);
+    if (numEscolhidoC == -1) exit(1);
+    printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
+
+    // printf();
+    // scanf("%d",&numEscolhidoC);
+    // printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
     /* . para acessar um campo de uma struct
         * -> para acessar um campo de uma struct a partir de um ponteiro */
     escolhido->fGolpe[0] = GolpesPossiveis[numEscolhidoR-1];
@@ -244,7 +269,7 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque nao ta aparecendo os fGolpe
 {
     Golpes aux;
     int golpeselecionado;
-    printf("Selecione o golpe que vai usar:\n1 - %s\n2 - %s", escolhido.fGolpe[0].nomeGolpe, escolhido.fGolpe[1].nomeGolpe);
+    printf("Selecione o golpe que vai usar:\n1 - %s\n2 - %s\n", escolhido.fGolpe[0].nomeGolpe, escolhido.fGolpe[1].nomeGolpe);
     scanf("%d", &golpeselecionado);
     aux.f_golpe = escolhido.fGolpe[golpeselecionado-1].f_golpe;
     return aux;
@@ -289,6 +314,14 @@ int main () {
     
     return 0;
 }
+
+
+
+
+
+
+
+
 
 
 
