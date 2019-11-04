@@ -141,7 +141,7 @@ Pokemon EscolhePokemon()
     while(1) { // laço para controlar a seleção de Pokemon
         printf("Digite o numero correspondente ao Pokemon desejado: ");
         scanf("%d", &num); //  número correspondente ao Pokèmon desejado
-        if (num < 0 || num > 151)
+        if (num < 1 || num > 151)
             printf("Pokemon invalido\n");
         else
             break;
