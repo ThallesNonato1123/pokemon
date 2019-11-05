@@ -134,6 +134,18 @@ float BonusClima(int a, Pokemon escolhido)
     return escolhido.fGolpe[golpeselecionado-1].f_golpe;
 }
 
+float ceiladora(float a) 
+{
+    // se o numero decimal foi igual ao inteiro correspondente, a função retorna o decimal
+    if ((a / (int) a) == 1)
+        return a;
+
+    // para qualquer outra situaçao o numero é convertido pra inteiro,
+    // perdendo a parte decimal, depois incrementado em uma unidade
+    // e convertido de volta para decimal
+    return (float)((int) a + 1.0);
+}
+
 Pokemon EscolhePokemon()  
 {   
     Pokemon p;
@@ -147,8 +159,25 @@ Pokemon EscolhePokemon()
             break;
     }
     asterisco();
-    printf("Digite o nivel do Pokemon escolhido: ");
-    scanf ("%f", &monstro[num].lvl);
+    while(1) { // laço para controlar a seleção do nível do Pokèmon
+        printf("Digite o nivel do Pokemon escolhido: ");
+        char buffer[1024];
+        //scanf ("%f", &monstro[num].lvl);
+        fgets (buffer, 1024, stdin);
+        if (!(monstro[num].lvl = atof(buffer)))
+            continue;
+        if(monstro[num].lvl < 1 || monstro[num].lvl > 40) {
+            printf("Informe nivel valido\n");
+            continue;
+        }
+        if(ceiladora(monstro[num].lvl/0.5) == monstro[num].lvl/0.5)
+            break;
+        else {
+            printf("Informe nivel valido\n");
+            continue;
+        }
+    }
+
     asterisco();
     monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
     p = monstro[num];
@@ -314,19 +343,3 @@ int main () {
     
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
