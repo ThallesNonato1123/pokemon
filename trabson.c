@@ -52,6 +52,7 @@ void Read_Data()
     status = fopen("pokemon.txt", "r");
     if (status == NULL) {
         printf("Erro na abertura de Pokemóns\n");
+        exit(1);
     }
     int i;
     for (i = 1 ; i <= numPokemon ; i++) { // loop para pegar os dados dos 151 pokèmons
@@ -66,6 +67,7 @@ void LerGolpe()
     polgues = fopen("ataques.txt", "r"); //recebe os dados do golpe
     if (polgues == NULL) {
         printf("Erro na abertura do arquivo\n");
+        exit(1);
     }
     int i;
     for (i = 0 ; i < 207 ; i++) {
@@ -85,25 +87,45 @@ void TransfereDados()
     dadosPoke = fopen("DadosAtk.txt", "r");
     if(dadosPoke == NULL) {
         printf("Erro na abertura do dadosPoke\n");
+        exit(1);
     }
     int i;
     for (i = 1 ; i < numPokemon ; i++) {
-        fscanf(dadosPoke,"%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
+        fscanf(dadosPoke, "%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
     }
     fclose(dadosPoke);
 }
 
 int LerClima(){
     int climaEscolhido;
-    while(1) {
-        printf("\nEscolha o clima da batalha:\n");
-        printf("1 - Clear/Sunny\n2 - Party Cloud\n3 - Cloudy\n4 - Rain\n5 - Snow\n6 - Fog\n7 - Windy\n\n");
-        scanf("%d", &climaEscolhido);
-        if(climaEscolhido == 1 || climaEscolhido == 2 || climaEscolhido == 3 || climaEscolhido == 4 || climaEscolhido == 5 || climaEscolhido == 6 || climaEscolhido == 7)
-            break;
-        else
-            printf("Escolha um clima valido\n");    
-    }
+        printf("\n\n\n");
+        printf("                                                                         Escolha o clima da batalha\n");
+        printf("                                                         -------------------------------------------------------------\n");
+        printf("                                                        |                                                             |\n");
+        printf("                                                        |                    1 _____ Clear / Sunny                    |\n");
+        printf("                                                        |                                                             |\n");
+        printf("                                                        |                    2 _____ Partly Cloudy                    |\n");
+        printf("                                                        |                                                             |\n");
+        printf("                                                        |                    3 _____ Cloudy                           |\n");
+        printf("                                                        |                                                             |\n");
+        printf("                                                        |                    4 _____ Rain                             |\n");
+        printf("                                                        |                                                             |\n");
+        printf("                                                        |                    5 _____ Snow                             |\n");
+        printf("                                                        |                                                             |\n");
+        printf("                                                        |                    6 _____ Fog                              |\n");
+        printf("                                                        |                                                             |\n");
+        printf("                                                        |                    7 _____ Windy                            |\n");
+        printf("                                                        |                                                             |\n");            
+        printf("                                                         -------------------------------------------------------------\n");
+        printf("\n\n\n");
+        while(1) {
+            printf("Selecione o clima desejado: ");
+            scanf("%d", &climaEscolhido);
+            if(climaEscolhido == 1 || climaEscolhido == 2 || climaEscolhido == 3 || climaEscolhido == 4 || climaEscolhido == 5 || climaEscolhido == 6 || climaEscolhido == 7)
+                break;
+            else
+                printf("Escolha um clima valido\n");    
+        }
     asterisco();
     return climaEscolhido;
 }
@@ -134,14 +156,13 @@ float BonusClima(int a, Pokemon escolhido)
     return escolhido.fGolpe[golpeselecionado-1].f_golpe;
 }
 
-float ceiladora(float a) 
+float ceiladora(float a) // função ceil(x) da biblioteca math.h que não estava funcionando
 {
     // se o numero decimal foi igual ao inteiro correspondente, a função retorna o decimal
     if ((a / (int) a) == 1)
         return a;
 
-    // para qualquer outra situaçao o numero é convertido pra inteiro,
-    // perdendo a parte decimal, depois incrementado em uma unidade
+    // para qualquer outra situaçao o numero é convertido pra inteiro, perdendo a parte decimal, depois incrementado em uma unidade
     // e convertido de volta para decimal
     return (float)((int) a + 1.0);
 }
@@ -177,7 +198,6 @@ Pokemon EscolhePokemon()
             continue;
         }
     }
-
     asterisco();
     monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
     p = monstro[num];
@@ -329,6 +349,7 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 }
 
 int main () {
+    printf("\e[H\e[2J"); // aplica o comando "clear" no terminal
     Pokemon A;
     int b;
     TransfereDados();
