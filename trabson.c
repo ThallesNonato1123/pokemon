@@ -256,7 +256,8 @@ void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) {
 }
 
 int getBound(Golpes possiveis[7]){
-    for (int i = 0; i < 7; i++) {
+    int i;
+    for (i = 0; i < 7; i++) {
         if (possiveis[i].numGolpe == 208)
         return i;
     }
