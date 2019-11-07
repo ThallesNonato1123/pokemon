@@ -96,36 +96,37 @@ void TransfereDados()
     fclose(dadosPoke);
 }
 
-int LerClima(){
+int LerClima() 
+{
     int climaEscolhido;
-        printf("\n\n\n");
-        printf("                                                                         Escolha o clima da batalha\n");
-        printf("                                                         -------------------------------------------------------------\n");
-        printf("                                                        |                                                             |\n");
-        printf("                                                        |                    1 _____ Clear / Sunny                    |\n");
-        printf("                                                        |                                                             |\n");
-        printf("                                                        |                    2 _____ Partly Cloudy                    |\n");
-        printf("                                                        |                                                             |\n");
-        printf("                                                        |                    3 _____ Cloudy                           |\n");
-        printf("                                                        |                                                             |\n");
-        printf("                                                        |                    4 _____ Rain                             |\n");
-        printf("                                                        |                                                             |\n");
-        printf("                                                        |                    5 _____ Snow                             |\n");
-        printf("                                                        |                                                             |\n");
-        printf("                                                        |                    6 _____ Fog                              |\n");
-        printf("                                                        |                                                             |\n");
-        printf("                                                        |                    7 _____ Windy                            |\n");
-        printf("                                                        |                                                             |\n");            
-        printf("                                                         -------------------------------------------------------------\n");
-        printf("\n\n\n");
-        while(1) {
-            printf("Selecione o clima desejado: ");
-            scanf("%d", &climaEscolhido);
-            if(climaEscolhido == 1 || climaEscolhido == 2 || climaEscolhido == 3 || climaEscolhido == 4 || climaEscolhido == 5 || climaEscolhido == 6 || climaEscolhido == 7)
-                break;
-            else
-                printf("Escolha um clima valido\n");    
-        }
+    printf("\n\n\n");
+    printf("                                                                         Escolha o clima da batalha\n");
+    printf("                                                         -------------------------------------------------------------\n");
+    printf("                                                        |                                                             |\n");
+    printf("                                                        |                    1 _____ Clear / Sunny                    |\n");
+    printf("                                                        |                                                             |\n");
+    printf("                                                        |                    2 _____ Partly Cloudy                    |\n");
+    printf("                                                        |                                                             |\n");
+    printf("                                                        |                    3 _____ Cloudy                           |\n");
+    printf("                                                        |                                                             |\n");
+    printf("                                                        |                    4 _____ Rain                             |\n");
+    printf("                                                        |                                                             |\n");
+    printf("                                                        |                    5 _____ Snow                             |\n");
+    printf("                                                        |                                                             |\n");
+    printf("                                                        |                    6 _____ Fog                              |\n");
+    printf("                                                        |                                                             |\n");
+    printf("                                                        |                    7 _____ Windy                            |\n");
+    printf("                                                        |                                                             |\n");            
+    printf("                                                         -------------------------------------------------------------\n");
+    printf("\n\n\n");
+    while(1) {
+        printf("Selecione o clima desejado: ");
+        scanf("%d", &climaEscolhido);
+        if(climaEscolhido == 1 || climaEscolhido == 2 || climaEscolhido == 3 || climaEscolhido == 4 || climaEscolhido == 5 || climaEscolhido == 6 || climaEscolhido == 7)
+            break;
+        else
+            printf("Escolha um clima valido\n");    
+    }
     asterisco();
     return climaEscolhido;
 }
