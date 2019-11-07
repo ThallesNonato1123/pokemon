@@ -40,7 +40,7 @@ typedef struct {
     Golpes TmodoGolpe;
 }treinador;
 
-
+// Variáveis globais
 Pokemon monstro[numPokemon];
 Golpes ataque[207];
 int golpeselecionado;
