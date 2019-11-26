@@ -40,7 +40,7 @@ typedef struct {
     Golpes TmodoGolpe;
 }treinador;
 
-// Variáveis globais
+
 Pokemon monstro[numPokemon];
 Golpes ataque[207];
 int golpeselecionado;
@@ -52,7 +52,6 @@ void Read_Data()
     status = fopen("pokemon.txt", "r");
     if (status == NULL) {
         printf("Erro na abertura de Pokemóns\n");
-        exit(1);
     }
     int i;
     for (i = 1 ; i <= numPokemon ; i++) { // loop para pegar os dados dos 151 pokèmons
@@ -67,7 +66,6 @@ void LerGolpe()
     polgues = fopen("ataques.txt", "r"); //recebe os dados do golpe
     if (polgues == NULL) {
         printf("Erro na abertura do arquivo\n");
-        exit(1);
     }
     int i;
     for (i = 0 ; i < 207 ; i++) {
@@ -87,40 +85,19 @@ void TransfereDados()
     dadosPoke = fopen("DadosAtk.txt", "r");
     if(dadosPoke == NULL) {
         printf("Erro na abertura do dadosPoke\n");
-        exit(1);
     }
     int i;
     for (i = 1 ; i < numPokemon ; i++) {
-        fscanf(dadosPoke, "%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
+        fscanf(dadosPoke,"%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
     }
     fclose(dadosPoke);
 }
 
-int LerClima() 
-{
+int LerClima(){
     int climaEscolhido;
-    printf("\n\n\n");
-    printf("                                                                         Escolha o clima da batalha\n");
-    printf("                                                         -------------------------------------------------------------\n");
-    printf("                                                        |                                                             |\n");
-    printf("                                                        |                    1 _____ Clear / Sunny                    |\n");
-    printf("                                                        |                                                             |\n");
-    printf("                                                        |                    2 _____ Partly Cloudy                    |\n");
-    printf("                                                        |                                                             |\n");
-    printf("                                                        |                    3 _____ Cloudy                           |\n");
-    printf("                                                        |                                                             |\n");
-    printf("                                                        |                    4 _____ Rain                             |\n");
-    printf("                                                        |                                                             |\n");
-    printf("                                                        |                    5 _____ Snow                             |\n");
-    printf("                                                        |                                                             |\n");
-    printf("                                                        |                    6 _____ Fog                              |\n");
-    printf("                                                        |                                                             |\n");
-    printf("                                                        |                    7 _____ Windy                            |\n");
-    printf("                                                        |                                                             |\n");            
-    printf("                                                         -------------------------------------------------------------\n");
-    printf("\n\n\n");
     while(1) {
-        printf("Selecione o clima desejado: ");
+        printf("\nEscolha o clima da batalha:\n");
+        printf("1 - Clear/Sunny\n2 - Party Cloud\n3 - Cloudy\n4 - Rain\n5 - Snow\n6 - Fog\n7 - Windy\n\n");
         scanf("%d", &climaEscolhido);
         if(climaEscolhido == 1 || climaEscolhido == 2 || climaEscolhido == 3 || climaEscolhido == 4 || climaEscolhido == 5 || climaEscolhido == 6 || climaEscolhido == 7)
             break;
@@ -157,17 +134,6 @@ float BonusClima(int a, Pokemon escolhido)
     return escolhido.fGolpe[golpeselecionado-1].f_golpe;
 }
 
-float ceiladora(float a) // função ceil(x) da biblioteca math.h que não estava funcionando
-{
-    // se o numero decimal foi igual ao inteiro correspondente, a função retorna o decimal
-    if ((a / (int) a) == 1)
-        return a;
-
-    // para qualquer outra situaçao o numero é convertido pra inteiro, perdendo a parte decimal, depois incrementado em uma unidade
-    // e convertido de volta para decimal
-    return (float)((int) a + 1.0);
-}
-
 Pokemon EscolhePokemon()  
 {   
     Pokemon p;
@@ -175,30 +141,14 @@ Pokemon EscolhePokemon()
     while(1) { // laço para controlar a seleção de Pokemon
         printf("Digite o numero correspondente ao Pokemon desejado: ");
         scanf("%d", &num); //  número correspondente ao Pokèmon desejado
-        if (num < 1 || num > 151)
+        if (num < 0 || num > 151)
             printf("Pokemon invalido\n");
         else
             break;
     }
     asterisco();
-    while(1) { // laço para controlar a seleção do nível do Pokèmon
-        printf("Digite o nivel do Pokemon escolhido: ");
-        char buffer[1024];
-        //scanf ("%f", &monstro[num].lvl);
-        fgets (buffer, 1024, stdin);
-        if (!(monstro[num].lvl = atof(buffer)))
-            continue;
-        if(monstro[num].lvl < 1 || monstro[num].lvl > 40) {
-            printf("Informe nivel valido\n");
-            continue;
-        }
-        if(ceiladora(monstro[num].lvl/0.5) == monstro[num].lvl/0.5)
-            break;
-        else {
-            printf("Informe nivel valido\n");
-            continue;
-        }
-    }
+    printf("Digite o nivel do Pokemon escolhido: ");
+    scanf ("%f", &monstro[num].lvl);
     asterisco();
     monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
     p = monstro[num];
@@ -257,8 +207,7 @@ void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) {
 }
 
 int getBound(Golpes possiveis[7]){
-    int i;
-    for (i = 0; i < 7; i++) {
+    for (int i = 0; i < 7; i++) {
         if (possiveis[i].numGolpe == 208)
         return i;
     }
@@ -305,7 +254,7 @@ void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
 
     numEscolhidoC = ValidaEntrada('C', "\nEscolha um golpe carregado: ", GolpesPossiveis);
     if (numEscolhidoC == -1) exit(1);
-    printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
+    printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
 
     // printf();
     // scanf("%d",&numEscolhidoC);
@@ -329,40 +278,61 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque nao ta aparecendo os fGolpe
 void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 {
     int i = 0, j = 0;
+    Golpes P1Golpe,P2Golpe;
     while (i < 3 && j < 3) {
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
         while (p1[i].hp > 0 && p2[j].hp > 0) {
+            printf("Escolha um golpe para %s\n",p1[i].nome);
+            P1Golpe = selecionaGolpe(p1[i]);
+            printf("Escolha um golpe para %s\n",p2[i].nome);
+            P2Golpe=selecionaGolpe(p2[i]);
             if (bate == 0) { // P2[j] sofre dano
-               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[i].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * P1Golpe.f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
                 bate = 1;
                 } else { // P1[i] sofre dano
-                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[j].fGolpe[i].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * P2Golpe.f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
                 bate = 0;
                 }
           }
             if (p1[i].hp > 0) { // p1[i] sobreviveu
-              printf("Pokemon %d (Player %d) ganhou de %d com %f de hp restante\n", p1[i].num, 1, p2[j].num, p1[i].hp);
+              printf("Pokemon %s (Player %d) ganhou de %s com %f de hp restante\n", p1[i].nome, 1, p2[j].nome, p1[i].hp);
               j++;
             } else { // p2[j] sobreviveu
-              printf("Pokemon %d (Player %d) ganhou de %d com %f de hp restante\n", p2[j].num, 2, p1[i].num, p2[j].hp);
+              printf("Pokemon %s (Player %d) ganhou de %s com %f de hp restante\n", p2[j].nome, 2, p1[i].nome, p2[j].hp);
               i++;
             }
       }
 }
 
 int main () {
-    printf("\e[H\e[2J"); // aplica o comando "clear" no terminal
-    Pokemon A;
-    int b;
+    Pokemon P1[3],P2[3];
+    int clima;
     TransfereDados();
     Read_Data();
     EscreveNomePokemon();
     LerGolpe();
-    A = EscolhePokemon();
-    b = LerClima();
-    BonusClima(b, A);
-    EscolheGolpe(&A);
-    selecionaGolpe(A);
+    
+    printf("Jogador 1:");
+            for(int i=1;i<=3;i++){
+                printf("\nEscolha o %d pokémon\n",i);
+                P1[i] = EscolhePokemon();
+                EscolheGolpe(&P1[i]);
+            }
+    
+    printf("Jogador 2:\n");
+        for(int i=1;i<=3;i++){
+                printf("\nEscolha o  %d pokémon\n",i);
+                P2[i] = EscolhePokemon();
+                EscolheGolpe(&P2[i]);
+        }
+    
+        clima = LerClima();
+        
+        for(int i=0;i<3;i++){
+            BonusClima(clima,P1[i]);
+            BonusClima(clima,P2[i]);
+        }
+        Battle(P1,P2);
     
     return 0;
 }
