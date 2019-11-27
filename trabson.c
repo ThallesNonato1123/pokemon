@@ -14,7 +14,7 @@ void asterisco()
 {
     printf("\n");
     int i;
-    for (i = 0; i < 80 ; i++)
+    for (i = 0; i < 100 ; i++)
         printf("*");
     printf("\n\n");
 }
