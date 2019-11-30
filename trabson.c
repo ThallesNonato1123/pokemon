@@ -302,6 +302,7 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
     
     while (i <= 3 && j <= 3) {        
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
+        printf("\n%s vs %s\n",p1[i].nome,p2[i].nome);
         while (p1[i].hp > 0 && p2[j].hp > 0) {
             if (bate == 0) { // P2[j] sofre dano
                 p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[0].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
@@ -330,7 +331,7 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
               i++;
             }
       }
-      if((p1[1].hp+p1[2].hp+p1[3].hp)!=0)
+      if((p1[1].hp+p1[2].hp+p1[3].hp)>0 )
           printf("\nPlayer 1 ganhou\n");
       else
       {
