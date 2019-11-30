@@ -289,7 +289,7 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque nao ta aparecendo os fGolpe
 {
     Golpes aux;
     int golpeselecionado;
-    printf("Selecione o golpe que vai usar:\n1 - %s\n2 - %s\n", escolhido.fGolpe[0].nomeGolpe, escolhido.fGolpe[1].nomeGolpe);
+    printf("\nSelecione o golpe que vai usar:\n1 - %s\n2 - %s\n", escolhido.fGolpe[0].nomeGolpe, escolhido.fGolpe[1].nomeGolpe);
     scanf("%d", &golpeselecionado);
     aux.f_golpe = escolhido.fGolpe[golpeselecionado-1].f_golpe;
     return aux;
@@ -297,35 +297,50 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque nao ta aparecendo os fGolpe
 
 void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 {
-    int i = 0, j = 0;
-    Golpes P1Golpe,P2Golpe;
-    while (i < 3 && j < 3) {
+    int i = 1, j = 1;
+    int P1porradao,P2porradao;
+    
+    while (i <= 3 && j <= 3) {        
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
         while (p1[i].hp > 0 && p2[j].hp > 0) {
-            printf("Escolha um golpe para %s\n",p1[i].nome);
-            P1Golpe = selecionaGolpe(p1[i]);
-            printf("Escolha um golpe para %s\n",p2[i].nome);
-            P2Golpe=selecionaGolpe(p2[i]);
             if (bate == 0) { // P2[j] sofre dano
-               p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * P1Golpe.f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+                p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[0].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+                P1porradao+=p1[i].fGolpe[0].g_energia;
+                if(P1porradao==p1[i].fGolpe[1].g_energia){
+                    printf("%s usará o golpe carregado %s",p1[i].nome,p1[i].fGolpe->nomeGolpe);
+                    p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p2[i].fGolpe[1].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+                    P1porradao-=p1[i].fGolpe[1].g_energia;
+                }
                 bate = 1;
                 } else { // P1[i] sofre dano
-                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * P2Golpe.f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[i].fGolpe[0].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                if(P2porradao==p2[i].fGolpe[1].g_energia){
+                    printf("%s usará o golpe carregado %s ",p2[i].nome,p2[i].fGolpe->nomeGolpe);
+                    p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p1[i].fGolpe[1].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                    P2porradao-=p2[i].fGolpe[1].g_energia;
+                }
                 bate = 0;
                 }
           }
             if (p1[i].hp > 0) { // p1[i] sobreviveu
-              printf("Pokemon %s (Player %d) ganhou de %s com %f de hp restante\n", p1[i].nome, 1, p2[j].nome, p1[i].hp);
+              printf("\nPokemon %s (Player %d) ganhou de %s com %.2f de hp restante\n", p1[i].nome, 1, p2[j].nome, p1[i].hp);
               j++;
             } else { // p2[j] sobreviveu
-              printf("Pokemon %s (Player %d) ganhou de %s com %f de hp restante\n", p2[j].nome, 2, p1[i].nome, p2[j].hp);
+              printf("\nPokemon %s (Player %d) ganhou de %s com %.2f de hp restante\n", p2[j].nome, 2, p1[i].nome, p2[j].hp);
               i++;
             }
       }
+      if((p1[1].hp+p1[2].hp+p1[3].hp)!=0)
+          printf("\nPlayer 1 ganhou\n");
+      else
+      {
+          printf("\nPlayer 2 ganhou\n");
+      }
+      
 }
 
 int main () {
-    Pokemon P1[3],P2[3];
+    Pokemon P1[4],P2[4];
     int clima;
     TransfereDados();
     Read_Data();
