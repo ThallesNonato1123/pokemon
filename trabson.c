@@ -1,5 +1,5 @@
 /* Lista de funções: asterisco - ReadData - Ler Golpe - TransfereDados - LerClima - BonusClima - ceiladora - EscolhePokemon - EscreveNome
-                     EscreveNomePokemon - getBound - ValidaEntrada - EscolheGolpe - selecionaGolpe - matrizVant- alpha  - Battle */
+                     EscreveNomePokemon - getBound - ValidaEntrada - EscolheGolpe - selecionaGolpe - Battle */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -69,7 +69,7 @@ void LerGolpe()
     for (i = 0 ; i < 207 ; i++) {
         fscanf(polgues, "%d", ataque[i].t_golpe);
         fscanf(polgues, "%c", &ataque[i].modoGolpe);
-        fgets(ataque[i].nomeGolpe, 24, polgues); puts(ataque[i].nomeGolpe);
+        fgets(ataque[i].nomeGolpe, 24, polgues);
         fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
         fscanf(polgues, "%d", &ataque[i].numGolpe);
     }
@@ -343,7 +343,7 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque não está aparecendo os fGol
     return aux;
 }
 
-double matrizVant(Pokemon p1,Pokemon p2){
+ double matrizVant(Pokemon p1,Pokemon p2){
     double bonus;
     double matriz[19][19]={{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                           {0,0.5,2,1,1,0.5,1,1,1,0.5,1,1,2,2,2,1,1,0.5,1},
@@ -363,12 +363,20 @@ double matrizVant(Pokemon p1,Pokemon p2){
                           {0,1,1,1,0,1,1,1,1,1,1,1,1,1,0.5,2,1,1,2},
                           {0,1,1,1,1,1,0,1,1,1,1,1,1,0.5,1,1,2,1,1},
                           {0,1,2,1,1,0.5,1,2,1,1,0.5,2,1,0.5,1,1,1,1,1},
-                          {0,1,1,1,1,1,1,2,2,1,1,1,1,0.5,0,1,1,1,0.5}};
-        bonus= matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] * matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
+                          {0,1,1,1,1,1,1,2,2,1,1,1,1,0.5,0,1,1,1,0.5}};        
+        
+        if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1]>0 && matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2])
+            bonus= matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] * matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
+        
+        else if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1]>0)
+            bonus= matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1];
+        
+        else if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2]>0)
+            bonus= matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
         return bonus;
-}
+} 
 
-double alpha(Pokemon p1,Pokemon p2,int b){
+ double alpha(Pokemon p1,Pokemon p2,int b){
   double dano;
   dano = matrizVant(p1,p2)*(1-(rand()%15/100));
   if( p1.tipo1 == p1.fGolpe[b].t_golpe || p1.tipo2 == p1.fGolpe[0].t_golpe){
@@ -380,7 +388,7 @@ double alpha(Pokemon p1,Pokemon p2,int b){
 void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 {
     int i = 1, j = 1;
-    int P1porradao, P2porradao;
+    int P1porradao[4]={0,0,0,0}, P2porradao[4]={0,0,0,0};
     
     while (i <= 3 && j <= 3) 
     {        
@@ -391,25 +399,26 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
         {
             if (bate == 0) 
             { // P2[j] sofre dano
-                p2[i].hp -= (((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[0].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2)*alpha(p1[i],p2[i],0);
-                P1porradao += p1[i].fGolpe[0].g_energia;
-                if(P1porradao == p1[i].fGolpe[1].g_energia) {
+                p2[j].hp -= (((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[0].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2) * alpha(p1[i],p2[j],0);
+                P1porradao[i] += p1[i].fGolpe[0].g_energia;
+                if(P1porradao[i] == p1[i].fGolpe[1].g_energia) {
                     usleep(100000);
-                    printf("%s usará o golpe carregado %s",p1[i].nome,p1[i].fGolpe->nomeGolpe);
-                    p2[i].hp -= (((2 * p1[i].lvl / 5 + 2) * p2[i].fGolpe[1].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2) * alpha(p1[i],p2[i],1);
-                    P1porradao -= p1[i].fGolpe[1].g_energia;
+                    printf("\n%s usará o golpe carregado %s\n",p1[i].nome,p1[i].fGolpe->nomeGolpe);
+                    p2[i].hp -= (((2 * p1[i].lvl / 5 + 2) * p2[i].fGolpe[1].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2) * alpha(p1[i],p2[j],1);
+                    P1porradao[i] -= p1[i].fGolpe[1].g_energia;
                 }
                 bate = 1;
             } 
             else 
             { // P1[i] sofre dano
-                p1[i].hp -= (((2 * p2[j].lvl / 5 + 2) * p2[i].fGolpe[0].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2)*alpha(p2[i],p1[i],0);
-                if(P2porradao == p2[i].fGolpe[1].g_energia)
+                p1[i].hp -= (((2 * p2[j].lvl / 5 + 2) * p2[j].fGolpe[0].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2) * alpha(p2[j],p1[i],0);
+                P2porradao[j] += p2[j].fGolpe[0].g_energia;
+                if(P2porradao[j] == p2[j].fGolpe[1].g_energia)
                 {
                     usleep(100000);
-                    printf("%s usará o golpe carregado %s ",p2[i].nome,p2[i].fGolpe->nomeGolpe);
-                    p1[i].hp -= (((2 * p2[j].lvl / 5 + 2) * p1[i].fGolpe[1].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2)*alpha(p2[i],p1[i],1);
-                    P2porradao -= p2[i].fGolpe[1].g_energia;
+                    printf("\n%s usará o golpe carregado %s\n",p2[j].nome,p2[j].fGolpe->nomeGolpe);
+                    p1[i].hp -= (((2 * p2[j].lvl / 5 + 2) * p1[i].fGolpe[1].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2) * alpha(p2[j],p1[i],1);
+                    P2porradao[j] -= p2[j].fGolpe[1].g_energia;
                 }
                 bate = 0;
             }
@@ -444,7 +453,7 @@ int main () {
     printf("\n\n\n");
     printf("\t\t\t ----------------\n");
     printf("\t\t\t|                |\n");
-    printf("\t\t\t|   Jogagor 1:   |\n");
+    printf("\t\t\t|   Jogador 1:   |\n");
     printf("\t\t\t|                |\n");
     printf("\t\t\t ----------------\n\n\n");
             for(i = 1 ; i <= 3 ; i++) {
@@ -456,7 +465,7 @@ int main () {
     printf("\n\n\n");
     printf("\t\t\t ----------------\n");
     printf("\t\t\t|                |\n");
-    printf("\t\t\t|   Jogagor 2:   |\n");
+    printf("\t\t\t|   Jogador 2:   |\n");
     printf("\t\t\t|                |\n");
     printf("\t\t\t ----------------\n\n\n");
     for(i = 1 ; i <= 3 ; i++) {
@@ -471,8 +480,7 @@ int main () {
         BonusClima(clima, P1[i]);
         BonusClima(clima, P2[i]);
     }
-    Battle(P1, P2);
-    matrizVant(P1[1],P2[1]);
+    Battle(P1,P2);
     
     return 0;
 }
