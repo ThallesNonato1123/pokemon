@@ -385,7 +385,7 @@ int main () {
             }
     
     printf("Jogador 2:\n");
-        for(int i=1;i<=3;i++){
+        for(i = 1 ; i <= 3 ; i++) {
                 printf("\nEscolha o  %d pokémon\n",i);
                 P2[i] = EscolhePokemon();
                 EscolheGolpe(&P2[i]);
