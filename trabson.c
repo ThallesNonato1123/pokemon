@@ -365,7 +365,7 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque não está aparecendo os fGol
                           {0,1,2,1,1,0.5,1,2,1,1,0.5,2,1,0.5,1,1,1,1,1},
                           {0,1,1,1,1,1,1,2,2,1,1,1,1,0.5,0,1,1,1,0.5}};        
         
-        if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] > 0 && matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2])
+        if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] > 0 && matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2]>0)
             bonus = matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] * matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
         
         else if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] > 0)
