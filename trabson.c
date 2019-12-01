@@ -1,4 +1,4 @@
-/* Lista de funções: ReadData - Ler Golpe - TransfereDados - LerClima - BonusClima - ceiladora - EscolhePokemon - EscreveNome
+/* Lista de funções: asterisco - ReadData - Ler Golpe - TransfereDados - LerClima - BonusClima - ceiladora - EscolhePokemon - EscreveNome
                      EscreveNomePokemon - getBound - ValidaEntrada - EscolheGolpe - selecionaGolpe - Battle */
 #include <stdio.h>
 #include <stdlib.h>
