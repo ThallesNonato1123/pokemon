@@ -96,7 +96,7 @@ void TransfereDados()
 int LerClima() 
 {
     int climaEscolhido;
-    printf("\n\n\n");
+    printf("\n\n\n\n\n\n");
     printf("                                                                         Escolha o clima da batalha\n");
     printf("                                                         -------------------------------------------------------------\n");
     printf("                                                        |                                                             |\n");
@@ -115,7 +115,7 @@ int LerClima()
     printf("                                                        |                    7 _____ Windy                            |\n");
     printf("                                                        |                                                             |\n");            
     printf("                                                         -------------------------------------------------------------\n");
-    printf("\n\n\n");
+    printf("\n\n\n\n\n\n");
     while(1) {
         printf("Selecione o clima desejado: ");
         scanf("%d", &climaEscolhido);
@@ -170,7 +170,6 @@ Pokemon EscolhePokemon()
     Pokemon p;
     int num;
     while(1) { // laço para controlar a seleção de Pokemon
-        printf("Digite o numero correspondente ao Pokemon desejado: ");
         scanf("%d", &num); //  número correspondente ao Pokèmon desejado
         if (num < 1 || num > 151)
             printf("Pokemon invalido\n");
@@ -346,11 +345,11 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
             else 
             { // P1[i] sofre dano
                 p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[i].fGolpe[0].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
-                if(P2porradao==p2[i].fGolpe[1].g_energia)
+                if(P2porradao == p2[i].fGolpe[1].g_energia)
                 {
                     printf("%s usará o golpe carregado %s ",p2[i].nome,p2[i].fGolpe->nomeGolpe);
                     p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p1[i].fGolpe[1].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
-                    P2porradao-=p2[i].fGolpe[1].g_energia;
+                    P2porradao -= p2[i].fGolpe[1].g_energia;
                 }
                 bate = 0;
             }
@@ -365,12 +364,13 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
             }
     }
     if((p1[1].hp+p1[2].hp+p1[3].hp)>0 )
-        printf("\nPlayer 1 ganhou!\n");
+        printf("\n\n\n\t\t\t\t\t\t\t\tPlayer 1 ganhou!\n");
     else
-        printf("\nPlayer 2 ganhou!\n");     
+        printf("\n\n\n\t\t\t\t\t\t\t\tPlayer 2 ganhou!\n");     
 }
 
 int main () {
+    printf("\e[H\e[2J"); // comando equivalente ao clear do terminal
     Pokemon P1[4],P2[4];
     int clima;
     TransfereDados();
@@ -379,27 +379,37 @@ int main () {
     LerGolpe();
     int i;
     
-    printf("Jogador 1:");
+    printf("\n\n\n");
+    printf("\t\t\t ----------------\n");
+    printf("\t\t\t|                |\n");
+    printf("\t\t\t|   Jogagor 1:   |\n");
+    printf("\t\t\t|                |\n");
+    printf("\t\t\t ----------------\n\n\n");
             for(i = 1 ; i <= 3 ; i++) {
-                printf("\nEscolha o %d pokémon\n", i);
+                printf("\nEscolha o %dº pokémon: ", i);
                 P1[i] = EscolhePokemon();
                 EscolheGolpe(&P1[i]);
             }
     
-    printf("Jogador 2:\n");
-        for(i = 1 ; i <= 3 ; i++) {
-                printf("\nEscolha o  %d pokémon\n",i);
-                P2[i] = EscolhePokemon();
-                EscolheGolpe(&P2[i]);
-        }
+    printf("\n\n\n");
+    printf("\t\t\t ----------------\n");
+    printf("\t\t\t|                |\n");
+    printf("\t\t\t|   Jogagor 2:   |\n");
+    printf("\t\t\t|                |\n");
+    printf("\t\t\t ----------------\n\n\n");
+    for(i = 1 ; i <= 3 ; i++) {
+            printf("\nEscolha o %dº pokémon: ", i);
+            P2[i] = EscolhePokemon();
+            EscolheGolpe(&P2[i]);
+    }
     
         clima = LerClima();
         
-        for(i = 0 ; i < 3 ; i++) {
-            BonusClima(clima, P1[i]);
-            BonusClima(clima, P2[i]);
-        }
-        Battle(P1, P2);
+    for(i = 0 ; i < 3 ; i++) {
+        BonusClima(clima, P1[i]);
+        BonusClima(clima, P2[i]);
+    }
+    Battle(P1, P2);
     
     return 0;
 }
