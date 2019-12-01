@@ -222,7 +222,7 @@ void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) {
     
         GolpesPossiveis[i] = ataque[escolhido->numAtk[i]];
         if (GolpesPossiveis[i].numGolpe != 208)
-            printf("%d - %c%s\n", i+1, GolpesPossiveis[i].modoGolpe, GolpesPossiveis[i].nomeGolpe);
+            printf("%d - %c%s\n", i + 1, GolpesPossiveis[i].modoGolpe, GolpesPossiveis[i].nomeGolpe);
     }
 }
 
@@ -279,13 +279,14 @@ void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
     // printf();
     // scanf("%d",&numEscolhidoC);
     // printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
-    /* . para acessar um campo de uma struct
-        * -> para acessar um campo de uma struct a partir de um ponteiro */
+    /*     . para acessar um campo de uma struct
+          -> para acessar um campo de uma struct a partir de um ponteiro 
+     */
     escolhido->fGolpe[0] = GolpesPossiveis[numEscolhidoR-1];
     escolhido->fGolpe[1] = GolpesPossiveis[numEscolhidoC-1];
 }       
 
-Golpes selecionaGolpe(Pokemon escolhido) // porque nao ta aparecendo os fGolpe
+Golpes selecionaGolpe(Pokemon escolhido) // porque não está aparecendo os fGolpe
 {
     Golpes aux;
     int golpeselecionado;
@@ -298,7 +299,7 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque nao ta aparecendo os fGolpe
 void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 {
     int i = 1, j = 1;
-    int P1porradao,P2porradao;
+    int P1porradao, P2porradao;
     
     while (i <= 3 && j <= 3) {        
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
@@ -332,10 +333,10 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
             }
       }
       if((p1[1].hp+p1[2].hp+p1[3].hp)>0 )
-          printf("\nPlayer 1 ganhou\n");
+          printf("\nPlayer 1 ganhou!\n");
       else
       {
-          printf("\nPlayer 2 ganhou\n");
+          printf("\nPlayer 2 ganhou!\n");
       }
       
 }
@@ -347,10 +348,11 @@ int main () {
     Read_Data();
     EscreveNomePokemon();
     LerGolpe();
+    int i;
     
     printf("Jogador 1:");
-            for(int i=1;i<=3;i++){
-                printf("\nEscolha o %d pokémon\n",i);
+            for(i = 1 ; i <= 3 ; i++) {
+                printf("\nEscolha o %d pokémon\n", i);
                 P1[i] = EscolhePokemon();
                 EscolheGolpe(&P1[i]);
             }
@@ -364,11 +366,11 @@ int main () {
     
         clima = LerClima();
         
-        for(int i=0;i<3;i++){
-            BonusClima(clima,P1[i]);
-            BonusClima(clima,P2[i]);
+        for(i = 0 ; i < 3 ; i++) {
+            BonusClima(clima, P1[i]);
+            BonusClima(clima, P2[i]);
         }
-        Battle(P1,P2);
+        Battle(P1, P2);
     
     return 0;
 }
