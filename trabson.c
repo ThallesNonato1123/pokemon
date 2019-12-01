@@ -73,7 +73,6 @@ void LerGolpe()
         fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
         fscanf(polgues, "%d", &ataque[i].numGolpe);
     }
-    char c; while ( (c=getchar()) != 'q') {}
     fclose(polgues);
 }
 
