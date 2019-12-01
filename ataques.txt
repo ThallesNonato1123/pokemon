@@ -1,14 +1,14 @@
 013R Steel Wing              3.5 2.5       000 
 013R Iron Tail 	 	         3.0 2.0       001 
 016R Dragon Tail  	         3.0 3.3       002 
-009R Waterfall 		         4.0 2.7       003 
-005R Smack Down 	         4.0 2.7       004 
-005R Rock Throw 	         4.0 2.5       005 
+009R Waterfall 		             4.0 2.7       003 
+005R Smack Down 	             4.0 2.7       004 
+005R Rock Throw 	             4.0 2.5       005 
 007R Counter 	             4.0 3.5       006 
-002R Razor Leaf 	         5.5 2.0       007 
+002R Razor Leaf 	             5.5 2.0       007 
 015R Shadow Claw             3.0 4.0       008 
 001R Fire Spin 	 	         3.0 3.3	   009 
-008R Poison Jab 	         3.0 3.5	   010 
+008R Poison Jab 	             3.0 3.5	   010 
 018R Confusion 	 	         4.0 3.0	   011 
 001R Fire Fang 	 	         3.5 2.5	   012 
 004R Scratch                 4.0 2.0	   013 
@@ -17,50 +17,50 @@
 002R Vine Whip 	 	         2.5 4.0	   016 
 004R Pound 	                 2.5 2.0	   017 
 017R Air Slash 	     	     3.0 3.0       018 
-007R Rock Smash 	         3.0 2.3	   019 
-013R Metal Claw 	         2.5 3.0	   020 
-008R Acid 	     	         3.0 2.5	   021 
+007R Rock Smash 	             3.0 2.3	   019 
+013R Metal Claw 	             2.5 3.0	   020 
+008R Acid 	     	             3.0 2.5	   021 
 012R Frost Breath 	         3.5 2.5	   022 
 014R Feint Attack 	         3.0 3.0	   023 
 018R Zen Headbutt 	         2.7 2.0	   024 
 014R Snarl 	     	         2.7 3.3	   025 
 018R Extrasensory	         2.7 3.3	   026 
-003R Mud-Slap 		         3.0 2.7	   027 
+003R Mud-Slap 		             3.0 2.7	   027 
 017R Wing Attack  	         2.5 3.5	   028 
-009R Water Gun 		         3.0 3.0	   029 
-004R Tackle 	             3.0 2.0       030 
+009R Water Gun 		             3.0 3.0	   029 
+004R Tackle 	                 3.0 2.0       030 
 014R Sucker Punch	         2.5 3.5	   031 
 011R Struggle Bug 	         3.0 2.7	   032 
 004R Quick Attack 	         2.5 3.5       033 
-017R Peck 	     	         3.0 2.5	   034 
-007R Low Kick 	 	         2.0 2.5	   035 
-015R Lick 	     	         3.0 3.0	   036 
+017R Peck 	     	             3.0 2.5	   034 
+007R Low Kick 	 	             2.0 2.5	   035 
+015R Lick 	     	             3.0 3.0	   036 
 007R Karate Chop 	         2.5 3.5	   037 
 012R Ice Shard 	 	         3.0 3.3	   038 
 004R Hidden Power 	         3.0 2.7       039 
 001R Ember 	     	         3.0 3.0	   040 
 004R Cut 	                 3.0 2.0       041 
 013R Bullet Punch 	         3.0 3.5	   042 
-011R Bug Bite 	 	         3.0 3.0	   043 
-009R Bubble 	             2.7 3.7       044 
+011R Bug Bite 	 	             3.0 3.0	   043 
+009R Bubble 	                 2.7 3.7       044 
 011R Infestation  	         2.0 3.7	   045 
 010R Volt Switch  	         2.4 2.0	   046 
-010R Spark 	    	         2.0 4.0	   047 
+010R Spark 	    	             2.0 4.0	   047 
 010R Thunder Shock	         1.5 4.5	   048 
 018R Psycho Cut              1.5 4.5       049 
 008R Poison Sting 	         1.5 3.0	   050 
-003R Mud Shot 	 	         1.5 4.5	   051 
-015R Hex 	     	         2.0 3.7	   052 
+003R Mud Shot 	 	             1.5 4.5	   051 
+015R Hex 	     	             2.0 3.7	   052 
 011R Fury Cutter  	         2.0 4.0	   053 
 010R Charge Beam 	         1.7 3.7	   054 
 002R Bullet Seed 	         1.7 3.7       055 
-015R Astonish 		         1.7 3.0	   056 
-004R Take Down 		         1.7 2.7	   057 
+015R Astonish 		             1.7 3.0	   056 
+004R Take Down 		             1.7 2.7	   057 
 012R Powder Snow  	         2.0 4.0	   058 
-004R Present 	 	         1.0 4.0	   059 
-004R Yawn 	  	 	 	     0.0 3.0	   060 
+004R Present 	 	             1.0 4.0	   059 
+004R Yawn 	  	 	 	         0.0 3.0	   060 
 004R Transform 	 	         0.0 0.0	   061 
-009R Splash 	             0.0 3.0       062 
+009R Splash 	                 0.0 3.0       062 
 004C Wrap                    60  45        063 
 004C Hyper Beam              150 80        064 
 014C Dark Pulse            	 80  50   	   065 
