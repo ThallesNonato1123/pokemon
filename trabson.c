@@ -1,5 +1,5 @@
 /* Lista de funções: asterisco - ReadData - Ler Golpe - TransfereDados - LerClima - BonusClima - ceiladora - EscolhePokemon - EscreveNome
-                     EscreveNomePokemon - getBound - ValidaEntrada - EscolheGolpe - selecionaGolpe - Battle */
+                     EscreveNomePokemon - getBound - ValidaEntrada - EscolheGolpe - selecionaGolpe - matrizVant- alpha  - Battle */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
