@@ -1,5 +1,5 @@
 /* Lista de funções: asterisco - ReadData - Ler Golpe - TransfereDados - LerClima - BonusClima - ceiladora - EscolhePokemon - EscreveNome
-                     EscreveNomePokemon - getBound - ValidaEntrada - EscolheGolpe - selecionaGolpe - Battle */
+                     EscreveNomePokemon - getBound - ValidaEntrada - EscolheGolpe - selecionaGolpe - matrizVant - alpha - Battle */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -149,7 +149,7 @@ void BonusClima(int a, Pokemon escolhido)
     if( a == 7 && (*escolhido.fGolpe[0].t_golpe == 16  || *escolhido.fGolpe[0].t_golpe == 17  || *escolhido.fGolpe[0].t_golpe == 18))
         escolhido.fGolpe[0].f_golpe *= 1.3;
 
-    //golpe 2
+    //golpe 2:
 
     if( a == 1 && (*escolhido.fGolpe[1].t_golpe == 1 ||  *escolhido.fGolpe[1].t_golpe == 2 || *escolhido.fGolpe[1].t_golpe == 3  ))
         escolhido.fGolpe[1].f_golpe *= 1.3;
@@ -198,7 +198,6 @@ Pokemon EscolhePokemon()
             break;
     }
     getchar();
-    asterisco();
     while(1) { // laço para controlar a seleção do nível do Pokèmon
         printf("Digite o nivel do Pokemon escolhido: ");
         char buffer[1024];
@@ -219,7 +218,7 @@ Pokemon EscolhePokemon()
     }
     monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
     p = monstro[num];
-    printf("Você escolheu %s!\n", p.nome);
+    printf("\nVocê escolheu %s!\n", p.nome);
     return p;
 }
 
@@ -248,6 +247,7 @@ void EscreveNomePokemon()
 {
     int i;
     for (i = 1 ; i <= 150 ; i = i + 5) {
+        usleep(40000);
         EscreveNome(monstro[i]);
         EscreveNome(monstro[i+1]);
         EscreveNome(monstro[i+2]);
@@ -310,7 +310,7 @@ void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
     Golpes GolpesPossiveis[7];
     int numEscolhidoC, numEscolhidoR;
 
-    printf("Golpes possíveis para %s:\n", escolhido->nome);
+    printf("\nGolpes possíveis para %s:\n", escolhido->nome);
     MostraGolpes(escolhido, GolpesPossiveis);   
 
     numEscolhidoR = ValidaEntrada('R', "\nEscolha um Golpe rapido: ", GolpesPossiveis);
@@ -365,30 +365,31 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque não está aparecendo os fGol
                           {0,1,2,1,1,0.5,1,2,1,1,0.5,2,1,0.5,1,1,1,1,1},
                           {0,1,1,1,1,1,1,2,2,1,1,1,1,0.5,0,1,1,1,0.5}};        
         
-        if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1]>0 && matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2])
-            bonus= matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] * matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
+        if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] > 0 && matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2])
+            bonus = matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] * matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
         
-        else if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1]>0)
-            bonus= matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1];
+        else if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] > 0)
+            bonus = matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1];
         
-        else if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2]>0)
-            bonus= matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
+        else if(matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2] > 0)
+            bonus = matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
         return bonus;
 } 
 
- double alpha(Pokemon p1,Pokemon p2,int b){
-  double dano;
-  dano = matrizVant(p1,p2)*(1-(rand()%15/100));
-  if( p1.tipo1 == p1.fGolpe[b].t_golpe || p1.tipo2 == p1.fGolpe[0].t_golpe){
-    dano=matrizVant(p1,p2)*(1-(rand()%15/100))*1.5;
-    }
+double alpha(Pokemon p1, Pokemon p2, int b)
+{
+    double dano;
+    dano = matrizVant(p1,p2)*(1-(rand()%15/100));
+    if( p1.tipo1 == p1.fGolpe[b].t_golpe || p1.tipo2 == p1.fGolpe[0].t_golpe)
+        dano = matrizVant(p1,p2) * (1-(rand()%15/100)) * 1.5;
+
     return dano;
 }
 
 void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 {
     int i = 1, j = 1;
-    int P1porradao[4]={0,0,0,0}, P2porradao[4]={0,0,0,0};
+    int P1porradao[4] = {0,0,0,0}, P2porradao[4]={0,0,0,0};
     
     while (i <= 3 && j <= 3) 
     {        
@@ -435,14 +436,14 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
             }
     }
     if((p1[1].hp+p1[2].hp+p1[3].hp)>0 )
-        printf("\n\n\n\t\t\t\t\t\t\t\tPlayer 1 ganhou!\n\n\n\n");
+        printf("\n\n\n\t\t\t\t\t\t\t\t\t\t\tPlayer 1 ganhou!\n\n\n\n");
     else
-        printf("\n\n\n\t\t\t\t\t\t\t\tPlayer 2 ganhou!\n\n\n\n");     
+        printf("\n\n\n\t\t\t\t\t\t\t\t\t\t\tPlayer 2 ganhou!\n\n\n\n");     
 }
 
 int main () {
     printf("\e[H\e[2J"); // comando equivalente ao clear do terminal
-    Pokemon P1[4],P2[4];
+    Pokemon P1[4], P2[4];
     int clima;
     TransfereDados();
     Read_Data();
@@ -460,8 +461,13 @@ int main () {
                 printf("\nEscolha o %dº pokémon: ", i);
                 P1[i] = EscolhePokemon();
                 EscolheGolpe(&P1[i]);
+                if (i < 3)
+                    asterisco();
+                else
+                    continue;
             }
     
+    asterisco();
     printf("\n\n\n");
     printf("\t\t\t ----------------\n");
     printf("\t\t\t|                |\n");
@@ -472,6 +478,7 @@ int main () {
             printf("\nEscolha o %dº pokémon: ", i);
             P2[i] = EscolhePokemon();
             EscolheGolpe(&P2[i]);
+            asterisco();
     }
     
         clima = LerClima();
@@ -480,7 +487,7 @@ int main () {
         BonusClima(clima, P1[i]);
         BonusClima(clima, P2[i]);
     }
-    Battle(P1,P2);
+    Battle(P1, P2);
     
     return 0;
 }
