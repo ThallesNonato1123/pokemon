@@ -69,10 +69,11 @@ void LerGolpe()
     for (i = 0 ; i < 207 ; i++) {
         fscanf(polgues, "%d", ataque[i].t_golpe);
         fscanf(polgues, "%c", &ataque[i].modoGolpe);
-        fgets(ataque[i].nomeGolpe, 23, polgues);
+        fgets(ataque[i].nomeGolpe, 24, polgues); puts(ataque[i].nomeGolpe);
         fscanf(polgues, "%f %f", &ataque[i].f_golpe, &ataque[i].g_energia);
         fscanf(polgues, "%d", &ataque[i].numGolpe);
     }
+    char c; while ( (c=getchar()) != 'q') {}
     fclose(polgues);
 }
 
@@ -126,30 +127,53 @@ int LerClima()
     return climaEscolhido;
 }
 
-float BonusClima(int a, Pokemon escolhido)
+void BonusClima(int a, Pokemon escolhido)
 {    
-    if( a == 1 && (*escolhido.tipo1 == 1 || *escolhido.tipo2 == 1 || *escolhido.tipo1 == 2 || *escolhido.tipo2 == 2 || *escolhido.tipo1 == 3 || *escolhido.tipo2 == 3  ))
-        escolhido.fGolpe[golpeselecionado-1].f_golpe *= 1.3;
+    if( a == 1 && (*escolhido.fGolpe[0].t_golpe == 1 ||  *escolhido.fGolpe[0].t_golpe == 2 || *escolhido.fGolpe[0].t_golpe == 3  ))
+        escolhido.fGolpe[0].f_golpe *= 1.3;
     
-    if( a == 2 && (*escolhido.tipo1 == 4 || *escolhido.tipo2 == 4 || *escolhido.tipo1 == 5 || *escolhido.tipo2 == 5))
-        escolhido.fGolpe[golpeselecionado-1].f_golpe *= 1.3;
+    if( a == 2 && (*escolhido.fGolpe[0].t_golpe == 4 || *escolhido.fGolpe[0].t_golpe == 5))
+        escolhido.fGolpe[0].f_golpe *= 1.3;
     
-    if( a == 3 && (*escolhido.tipo1 == 6 || *escolhido.tipo2 == 6 || *escolhido.tipo1 == 7 || *escolhido.tipo2 == 7 || *escolhido.tipo1 == 8 || *escolhido.tipo2 == 8  ))
-        escolhido.fGolpe[golpeselecionado-1].f_golpe *= 1.3;
+    if( a == 3 && (*escolhido.fGolpe[0].t_golpe == 6 || *escolhido.fGolpe[0].t_golpe == 7 || *escolhido.fGolpe[0].t_golpe == 8 ))
+        escolhido.fGolpe[0].f_golpe *= 1.3;
     
-    if( a == 4 && (*escolhido.tipo1 == 9 || *escolhido.tipo2 == 9 || *escolhido.tipo1 == 10 || *escolhido.tipo2 == 10 || *escolhido.tipo1 == 11 || *escolhido.tipo2 == 11  ))
-        escolhido.fGolpe[golpeselecionado-1].f_golpe *= 1.3;
+    if( a == 4 && (*escolhido.fGolpe[0].t_golpe == 9 || *escolhido.fGolpe[0].t_golpe == 10 || *escolhido.fGolpe[0].t_golpe == 11  ))
+        escolhido.fGolpe[0].f_golpe *= 1.3;
     
-    if( a == 5 && (*escolhido.tipo1 == 12 || *escolhido.tipo2 == 12 || *escolhido.tipo1 == 13 || *escolhido.tipo2 == 13))
-        escolhido.fGolpe[golpeselecionado-1].f_golpe *= 1.3;
+    if( a == 5 && (*escolhido.fGolpe[0].t_golpe == 12 || *escolhido.fGolpe[0].t_golpe == 13 ))
+        escolhido.fGolpe[0].f_golpe *= 1.3;
     
-    if( a == 6 && (*escolhido.tipo1 == 14 || *escolhido.tipo2 == 14 || *escolhido.tipo1 == 15 || *escolhido.tipo2 == 15))
-        escolhido.fGolpe[golpeselecionado-1].f_golpe *= 1.3;
+    if( a == 6 && (*escolhido.fGolpe[0].t_golpe == 14  || *escolhido.fGolpe[0].t_golpe == 15 ))
+        escolhido.fGolpe[0].f_golpe *= 1.3;
     
-    if( a == 7 && (*escolhido.tipo1 == 16 || *escolhido.tipo2 == 16 || *escolhido.tipo1 == 17 || *escolhido.tipo2 == 17 || *escolhido.tipo1 == 18 || *escolhido.tipo2 == 18 ))
-        escolhido.fGolpe[golpeselecionado-1].f_golpe *= 1.3;
+    if( a == 7 && (*escolhido.fGolpe[0].t_golpe == 16  || *escolhido.fGolpe[0].t_golpe == 17  || *escolhido.fGolpe[0].t_golpe == 18))
+        escolhido.fGolpe[0].f_golpe *= 1.3;
 
-    return escolhido.fGolpe[golpeselecionado-1].f_golpe;
+    //golpe 2
+
+    if( a == 1 && (*escolhido.fGolpe[1].t_golpe == 1 ||  *escolhido.fGolpe[1].t_golpe == 2 || *escolhido.fGolpe[1].t_golpe == 3  ))
+        escolhido.fGolpe[1].f_golpe *= 1.3;
+    
+    if( a == 2 && (*escolhido.fGolpe[1].t_golpe == 4 || *escolhido.fGolpe[1].t_golpe == 5))
+        escolhido.fGolpe[1].f_golpe *= 1.3;
+    
+    if( a == 3 && (*escolhido.fGolpe[1].t_golpe == 6 || *escolhido.fGolpe[1].t_golpe == 7 || *escolhido.fGolpe[1].t_golpe == 8 ))
+        escolhido.fGolpe[1].f_golpe *= 1.3;
+    
+    if( a == 4 && (*escolhido.fGolpe[1].t_golpe == 9 || *escolhido.fGolpe[1].t_golpe == 10 || *escolhido.fGolpe[1].t_golpe == 11  ))
+        escolhido.fGolpe[1].f_golpe *= 1.3;
+    
+    if( a == 5 && (*escolhido.fGolpe[1].t_golpe == 12 || *escolhido.fGolpe[1].t_golpe == 13 ))
+        escolhido.fGolpe[1].f_golpe *= 1.3;
+    
+    if( a == 6 && (*escolhido.fGolpe[1].t_golpe == 14  || *escolhido.fGolpe[1].t_golpe == 15 ))
+        escolhido.fGolpe[1].f_golpe *= 1.3;
+    
+    if( a == 7 && (*escolhido.fGolpe[1].t_golpe == 16  || *escolhido.fGolpe[1].t_golpe == 17  || *escolhido.fGolpe[1].t_golpe == 18))
+        escolhido.fGolpe[1].f_golpe *= 1.3;
+
+    
 }
 
 float ceiladora(float a) // função ceil(x) da biblioteca math.h que não estava funcionando
@@ -320,6 +344,40 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque não está aparecendo os fGol
     return aux;
 }
 
+double matrizVant(Pokemon p1,Pokemon p2){
+    double bonus;
+    double matriz[19][19]={{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                          {0,0.5,2,1,1,0.5,1,1,1,0.5,1,1,2,2,2,1,1,0.5,1},
+                          {0,0.5,0.5,2,1,2,1,1,0.5,2,1,0.5,1,0.5,1,1,0.5,0.5,1},
+                          {0,2,0.5,1,1,2,1,1,2,1,2,0.5,1,2,1,1,1,0,1},
+                          {0,1,1,1,1,0.5,1,1,1,1,1,1,1,0.5,1,0,1,1,1},
+                          {0,2,1,0.5,1,1,1,0.5,1,1,1,2,2,0.5,1,1,1,2,1},
+                          {0,0.5,1,1,1,1,1,2,0.5,1,1,1,1,0.5,2,1,2,1,1},
+                          {0,1,1,1,2,2,0.5,1,0.5,1,1,0.5,2,2,2,0,1,0.5,0.5},
+                          {0,1,2,0.5,1,0.5,2,0.5,1,0.5,1,1,1,1,0,1,1,1,1},
+                          {0,2,0.5,2,1,2,1,1,1,0.5,1,1,1,1,1,1,0.5,1,1},
+                          {0,1,0.5,0,1,1,1,1,1,2,0.5,1,1,1,1,1,0.5,2,1},
+                          {0,0.5,2,1,1,1,0.5,0.5,0.5,1,1,1,1,0.5,0.5,1,0.5,2},
+                          {0,0.5,2,2,1,1,1,1,1,2,1,1,0.5,0.5,1,1,2,2,1},
+                          {0,0.5,1,1,1,2,2,1,1,0.5,0.5,1,2,0.5,1,1,1,1,1},
+                          {0,1,1,1,1,1,0.5,0.5,1,1,1,1,1,1,0.5,2,1,1,2},
+                          {0,1,1,1,0,1,1,1,1,1,1,1,1,1,0.5,2,1,1,2},
+                          {0,1,1,1,1,1,0,1,1,1,1,1,1,0.5,1,1,2,1,1},
+                          {0,1,2,1,1,0.5,1,2,1,1,0.5,2,1,0.5,1,1,1,1,1},
+                          {0,1,1,1,1,1,1,2,2,1,1,1,1,0.5,0,1,1,1,0.5}};
+        bonus= matriz[*p1.fGolpe[0].t_golpe][*p2.tipo1] * matriz[*p1.fGolpe[0].t_golpe][*p2.tipo2];
+        return bonus;
+}
+
+double alpha(Pokemon p1,Pokemon p2,int b){
+  double dano;
+  dano = matrizVant(p1,p2)*(1-(rand()%15/100));
+  if( p1.tipo1 == p1.fGolpe[b].t_golpe || p1.tipo2 == p1.fGolpe[0].t_golpe){
+    dano=matrizVant(p1,p2)*(1-(rand()%15/100))*1.5;
+    }
+    return dano;
+}
+
 void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 {
     int i = 1, j = 1;
@@ -329,29 +387,29 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
     {        
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
         usleep(100000);
-        printf("\n%s vs %s\n",p1[i].nome,p2[i].nome);
+        
         while (p1[i].hp > 0 && p2[j].hp > 0) 
         {
             if (bate == 0) 
             { // P2[j] sofre dano
-                p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[0].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+                p2[i].hp -= (((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[0].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2)*alpha(p1[i],p2[i],0);
                 P1porradao += p1[i].fGolpe[0].g_energia;
                 if(P1porradao == p1[i].fGolpe[1].g_energia) {
                     usleep(100000);
                     printf("%s usará o golpe carregado %s",p1[i].nome,p1[i].fGolpe->nomeGolpe);
-                    p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p2[i].fGolpe[1].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
+                    p2[i].hp -= (((2 * p1[i].lvl / 5 + 2) * p2[i].fGolpe[1].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2) * alpha(p1[i],p2[i],1);
                     P1porradao -= p1[i].fGolpe[1].g_energia;
                 }
                 bate = 1;
             } 
             else 
             { // P1[i] sofre dano
-                p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[i].fGolpe[0].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                p1[i].hp -= (((2 * p2[j].lvl / 5 + 2) * p2[i].fGolpe[0].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2)*alpha(p2[i],p1[i],0);
                 if(P2porradao == p2[i].fGolpe[1].g_energia)
                 {
                     usleep(100000);
                     printf("%s usará o golpe carregado %s ",p2[i].nome,p2[i].fGolpe->nomeGolpe);
-                    p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p1[i].fGolpe[1].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
+                    p1[i].hp -= (((2 * p2[j].lvl / 5 + 2) * p1[i].fGolpe[1].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2)*alpha(p2[i],p1[i],1);
                     P2porradao -= p2[i].fGolpe[1].g_energia;
                 }
                 bate = 0;
@@ -415,6 +473,7 @@ int main () {
         BonusClima(clima, P2[i]);
     }
     Battle(P1, P2);
+    matrizVant(P1[1],P2[1]);
     
     return 0;
 }
