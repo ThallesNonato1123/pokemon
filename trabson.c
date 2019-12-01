@@ -4,9 +4,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-//--------------------------
 #include <unistd.h>
-///-------------------------
 #define numPokemon 151 // 151 Pokemons, criada para o ler os status dos respectivos Pokemons no laço for
 
 typedef struct{
@@ -176,6 +174,7 @@ Pokemon EscolhePokemon()
         else
             break;
     }
+    getchar();
     asterisco();
     while(1) { // laço para controlar a seleção do nível do Pokèmon
         printf("Digite o nivel do Pokemon escolhido: ");
@@ -195,7 +194,6 @@ Pokemon EscolhePokemon()
             continue;
         }
     }
-    asterisco();
     monstro[num].hp = (monstro[num].stamina * 2 * monstro[num].lvl)/100 + monstro[num].lvl + 10; // cálculo do hp
     p = monstro[num];
     printf("Você escolheu %s!\n", p.nome);
@@ -293,12 +291,14 @@ void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
     MostraGolpes(escolhido, GolpesPossiveis);   
 
     numEscolhidoR = ValidaEntrada('R', "\nEscolha um Golpe rapido: ", GolpesPossiveis);
-    if (numEscolhidoR == -1) exit(1);
-        printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
+    if (numEscolhidoR == -1) 
+        exit(1);
+    printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
 
     numEscolhidoC = ValidaEntrada('C', "\nEscolha um golpe carregado: ", GolpesPossiveis);
-    if (numEscolhidoC == -1) exit(1);
-        printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
+    if (numEscolhidoC == -1) 
+        exit(1);
+    printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
 
     // printf();
     // scanf("%d",&numEscolhidoC);
@@ -328,6 +328,7 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
     while (i <= 3 && j <= 3) 
     {        
         int bate = (p1[i].speed > p2[j].speed) ? 0 : 1;
+        usleep(100000);
         printf("\n%s vs %s\n",p1[i].nome,p2[i].nome);
         while (p1[i].hp > 0 && p2[j].hp > 0) 
         {
@@ -336,6 +337,7 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
                 p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p1[i].fGolpe[0].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
                 P1porradao += p1[i].fGolpe[0].g_energia;
                 if(P1porradao == p1[i].fGolpe[1].g_energia) {
+                    usleep(100000);
                     printf("%s usará o golpe carregado %s",p1[i].nome,p1[i].fGolpe->nomeGolpe);
                     p2[i].hp -= ((2 * p1[i].lvl / 5 + 2) * p2[i].fGolpe[1].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2;
                     P1porradao -= p1[i].fGolpe[1].g_energia;
@@ -347,6 +349,7 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
                 p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p2[i].fGolpe[0].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
                 if(P2porradao == p2[i].fGolpe[1].g_energia)
                 {
+                    usleep(100000);
                     printf("%s usará o golpe carregado %s ",p2[i].nome,p2[i].fGolpe->nomeGolpe);
                     p1[i].hp -= ((2 * p2[j].lvl / 5 + 2) * p1[i].fGolpe[1].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2;
                     P2porradao -= p2[i].fGolpe[1].g_energia;
@@ -355,18 +358,20 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
             }
         }
             if (p1[i].hp > 0) { // p1[i] sobreviveu
+                usleep(100000);
                 printf("\nPokemon %s (Player %d) ganhou de %s com %.2f de hp restante\n", p1[i].nome, 1, p2[j].nome, p1[i].hp);
                 j++;
             } 
             else { // p2[j] sobreviveu
-              printf("\nPokemon %s (Player %d) ganhou de %s com %.2f de hp restante\n", p2[j].nome, 2, p1[i].nome, p2[j].hp);
-              i++;
+                usleep(100000);
+                printf("\nPokemon %s (Player %d) ganhou de %s com %.2f de hp restante\n", p2[j].nome, 2, p1[i].nome, p2[j].hp);
+                i++;
             }
     }
     if((p1[1].hp+p1[2].hp+p1[3].hp)>0 )
-        printf("\n\n\n\t\t\t\t\t\t\t\tPlayer 1 ganhou!\n");
+        printf("\n\n\n\t\t\t\t\t\t\t\tPlayer 1 ganhou!\n\n\n\n");
     else
-        printf("\n\n\n\t\t\t\t\t\t\t\tPlayer 2 ganhou!\n");     
+        printf("\n\n\n\t\t\t\t\t\t\t\tPlayer 2 ganhou!\n\n\n\n");     
 }
 
 int main () {
