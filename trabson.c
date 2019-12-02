@@ -20,7 +20,7 @@ typedef struct {
     char nome[51];
     int num, speed,tipo1[20], tipo2[20];
     float ataque, defesa, stamina,hp;
-    int numAtk[6];
+    int numAtk[40];
     Golpes fGolpe[2];
 }Pokemon;
 
@@ -79,14 +79,18 @@ void LerGolpe()
 void TransfereDados()
 {    
     FILE *dadosPoke;
-    Read_Data();
+    Read_Data(); 
     dadosPoke = fopen("DadosAtk.txt", "r");
     if(dadosPoke == NULL) {
         printf("Erro na abertura do dadosPoke\n");
     }
     int i;
     for (i = 1 ; i < numPokemon ; i++) {
+        
         fscanf(dadosPoke,"%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
+    }
+    for(i=0;i<39;i++){
+        fscanf(dadosPoke,"%d",&monstro[151].numAtk[i]);
     }
     fclose(dadosPoke);
 }
@@ -259,9 +263,13 @@ void EscreveNomePokemon()
 }
 
 void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) {
-    int i;
-    
-    for(i = 0 ; i < 7 ; i++) {
+    int i,j;
+    if(escolhido->num == 151){
+        j=39;
+    }else{
+        j=7;
+    }
+    for(i = 0 ; i < j ; i++) {
         if (escolhido->numAtk[i] == 208) {
             GolpesPossiveis[i].numGolpe = 208;
             break;
@@ -273,15 +281,18 @@ void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) {
     }
 }
 
-int getBound(Golpes possiveis[7]){
+int getBound(Golpes possiveis[40],Pokemon p){
+    if(p.num == 151)
+        return 39;
     for (int i = 0; i < 7; i++) {
-        if (possiveis[i].numGolpe == 208)
+        if (possiveis[i].numGolpe == 208){
         return i;
+        }
     }
     return 7;
 }
 
-int ValidaEntrada(char target, char* msg, Golpes possiveis[7]) {
+int ValidaEntrada(char target, char* msg, Golpes possiveis[40],Pokemon p) {
     int input = 0;
     while(1) {
         printf("%s", msg);
@@ -291,7 +302,7 @@ int ValidaEntrada(char target, char* msg, Golpes possiveis[7]) {
             continue;
         }
 
-        if (input < 1 || input > getBound(possiveis)) {
+        if (input < 1 || input > getBound(possiveis,p)) {
             printf("Numero invalido!\n");
             continue;
         }
@@ -307,18 +318,18 @@ int ValidaEntrada(char target, char* msg, Golpes possiveis[7]) {
 
 void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
 {
-    Golpes GolpesPossiveis[7];
+    Golpes GolpesPossiveis[40];
     int numEscolhidoC, numEscolhidoR;
 
     printf("\nGolpes possíveis para %s:\n", escolhido->nome);
     MostraGolpes(escolhido, GolpesPossiveis);   
 
-    numEscolhidoR = ValidaEntrada('R', "\nEscolha um Golpe rapido: ", GolpesPossiveis);
+    numEscolhidoR = ValidaEntrada('R', "\nEscolha um Golpe rapido: ", GolpesPossiveis,*escolhido);
     if (numEscolhidoR == -1) 
         exit(1);
     printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoR-1].nomeGolpe);
 
-    numEscolhidoC = ValidaEntrada('C', "\nEscolha um golpe carregado: ", GolpesPossiveis);
+    numEscolhidoC = ValidaEntrada('C', "\nEscolha um golpe carregado: ", GolpesPossiveis,*escolhido);
     if (numEscolhidoC == -1) 
         exit(1);
     printf("\nVocê escolheu o golpe: %s \n", GolpesPossiveis[numEscolhidoC-1].nomeGolpe);
