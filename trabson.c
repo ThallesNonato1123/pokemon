@@ -44,7 +44,7 @@ void asterisco()
     printf("\n\n");
 }
 
-void Read_Data() 
+void Read_Data() // responsável por ler tudo do arquivo do pokemon
 { //função para ler os dados dos pokèmons
     FILE *status; // arquivo "Pokemon.txt" com os dados dos pokèmons
     status = fopen("pokemon.txt", "r");
@@ -76,7 +76,7 @@ void LerGolpe()
     fclose(polgues);
 }
 
-void TransfereDados()
+void TransfereDados() // usada para unificar os golpes do pokemon com os golpes em geral
 {    
     FILE *dadosPoke;
     Read_Data(); 
@@ -89,8 +89,8 @@ void TransfereDados()
         
         fscanf(dadosPoke,"%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
     }
-    for(i=0;i<39;i++){
-        fscanf(dadosPoke,"%d",&monstro[151].numAtk[i]);
+    for(i = 0 ; i < 39 ; i++) {
+        fscanf(dadosPoke, "%d", &monstro[151].numAtk[i]);
     }
     fclose(dadosPoke);
 }
@@ -262,13 +262,13 @@ void EscreveNomePokemon()
     printf("151 - Mew\n\n");
 }
 
-void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) {
-    int i,j;
-    if(escolhido->num == 151){
-        j=39;
-    }else{
-        j=7;
-    }
+void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) // mostra o tipo do golpe e o golpe disponível para o pokemon 
+{
+    int i, j;
+    if(escolhido->num == 151)
+        j = 39;
+    else
+        j = 7;
     for(i = 0 ; i < j ; i++) {
         if (escolhido->numAtk[i] == 208) {
             GolpesPossiveis[i].numGolpe = 208;
@@ -281,7 +281,8 @@ void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) {
     }
 }
 
-int getBound(Golpes possiveis[40],Pokemon p){
+int getBound(Golpes possiveis[40],Pokemon p) // delimita o número de golpes de cada pokemon
+{
     if(p.num == 151)
         return 39;
     for (int i = 0; i < 7; i++) {
@@ -292,7 +293,8 @@ int getBound(Golpes possiveis[40],Pokemon p){
     return 7;
 }
 
-int ValidaEntrada(char target, char* msg, Golpes possiveis[40],Pokemon p) {
+int ValidaEntrada(char target, char* msg, Golpes possiveis[40],Pokemon p) // evita entradas inválidas
+{
     int input = 0;
     while(1) {
         printf("%s", msg);
@@ -307,16 +309,16 @@ int ValidaEntrada(char target, char* msg, Golpes possiveis[40],Pokemon p) {
             continue;
         }
 
-        if(possiveis[input-1].modoGolpe != target) {
-            printf("Esse golpe nao eh do tipo correto!\n");
-        } else
+        if(possiveis[input-1].modoGolpe != target)
+            printf("Esse golpe nao eh do tipo correto!\n"); 
+        else
             return input;
     }
 
     return -1;
 }
 
-void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
+void EscolheGolpe(Pokemon *escolhido)
 {
     Golpes GolpesPossiveis[40];
     int numEscolhidoC, numEscolhidoR;
@@ -344,6 +346,7 @@ void EscolheGolpe(Pokemon *escolhido) // ver parada do strcmp
     escolhido->fGolpe[1] = GolpesPossiveis[numEscolhidoC-1];
 }       
 
+/*
 Golpes selecionaGolpe(Pokemon escolhido) // porque não está aparecendo os fGolpe
 {
     Golpes aux;
@@ -353,8 +356,10 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque não está aparecendo os fGol
     aux.f_golpe = escolhido.fGolpe[golpeselecionado-1].f_golpe;
     return aux;
 }
+*/
 
- double matrizVant(Pokemon p1,Pokemon p2){
+ double matrizVant(Pokemon p1, Pokemon p2)
+ {
     double bonus;
     double matriz[19][19]={{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                           {0,0.5,2,1,1,0.5,1,1,1,0.5,1,1,2,2,2,1,1,0.5,1},
@@ -390,7 +395,7 @@ Golpes selecionaGolpe(Pokemon escolhido) // porque não está aparecendo os fGol
 double alpha(Pokemon p1, Pokemon p2, int b)
 {
     double dano;
-    dano = matrizVant(p1,p2)*(1-(rand()%15/100));
+    dano = matrizVant(p1,p2) * (1-(rand()%15/100));
     if( p1.tipo1 == p1.fGolpe[b].t_golpe || p1.tipo2 == p1.fGolpe[0].t_golpe)
         dano = matrizVant(p1,p2) * (1-(rand()%15/100)) * 1.5;
 
@@ -400,7 +405,7 @@ double alpha(Pokemon p1, Pokemon p2, int b)
 void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
 {
     int i = 1, j = 1;
-    int P1porradao[4] = {0,0,0,0}, P2porradao[4]={0,0,0,0};
+    int P1porradao[4] = {0,0,0,0}, P2porradao[4] = {0,0,0,0};
     
     while (i <= 3 && j <= 3) 
     {        
@@ -415,7 +420,7 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
                 P1porradao[i] += p1[i].fGolpe[0].g_energia;
                 if(P1porradao[i] == p1[i].fGolpe[1].g_energia) {
                     usleep(100000);
-                    printf("\n%s usará o golpe carregado %s\n",p1[i].nome,p1[i].fGolpe->nomeGolpe);
+                    printf("\n%s usará o golpe carregado %s\n",p1[i].nome, p1[i].fGolpe[1].nomeGolpe);
                     p2[i].hp -= (((2 * p1[i].lvl / 5 + 2) * p2[i].fGolpe[1].f_golpe * (p1[i].ataque / p2[j].defesa)) / 50 + 2) * alpha(p1[i],p2[j],1);
                     P1porradao[i] -= p1[i].fGolpe[1].g_energia;
                 }
@@ -428,7 +433,7 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
                 if(P2porradao[j] == p2[j].fGolpe[1].g_energia)
                 {
                     usleep(100000);
-                    printf("\n%s usará o golpe carregado %s\n",p2[j].nome,p2[j].fGolpe->nomeGolpe);
+                    printf("\n%s usará o golpe carregado %s\n",p2[j].nome,p2[j].fGolpe[1].nomeGolpe);
                     p1[i].hp -= (((2 * p2[j].lvl / 5 + 2) * p1[i].fGolpe[1].f_golpe * (p2[j].ataque / p1[i].defesa)) / 50 + 2) * alpha(p2[j],p1[i],1);
                     P2porradao[j] -= p2[j].fGolpe[1].g_energia;
                 }
@@ -452,7 +457,8 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
         printf("\n\n\n\t\t\t\t\t\t\t\t\t\t\tPlayer 2 ganhou!\n\n\n\n");     
 }
 
-int main () {
+int main () 
+{
     printf("\e[H\e[2J"); // comando equivalente ao clear do terminal
     Pokemon P1[4], P2[4];
     int clima;
