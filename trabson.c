@@ -66,7 +66,8 @@ void LerGolpe()
         printf("Erro na abertura do arquivo\n");
     }
     int i;
-    for (i = 0 ; i < 207 ; i++) {
+    for (i = 0 ; i < 207 ; i++) 
+    {
         fscanf(polgues, "%d", ataque[i].t_golpe);
         fscanf(polgues, "%c", &ataque[i].modoGolpe);
         fgets(ataque[i].nomeGolpe, 24, polgues);
@@ -85,8 +86,7 @@ void TransfereDados() // usada para unificar os golpes do pokemon com os golpes 
         printf("Erro na abertura do dadosPoke\n");
     }
     int i;
-    for (i = 1 ; i < numPokemon ; i++) {
-        
+    for (i = 1 ; i < numPokemon ; i++) {        
         fscanf(dadosPoke,"%d %d %d %d %d %d %d", &monstro[i].numAtk[0], &monstro[i].numAtk[1], &monstro[i].numAtk[2], &monstro[i].numAtk[3], &monstro[i].numAtk[4], &monstro[i].numAtk[5], &monstro[i].numAtk[6]);
     }
     for(i = 0 ; i < 39 ; i++) {
@@ -194,7 +194,8 @@ Pokemon EscolhePokemon()
 {   
     Pokemon p;
     int num;
-    while(1) { // laço para controlar a seleção de Pokemon
+    while(1) 
+    { // laço para controlar a seleção de Pokemon
         scanf("%d", &num); //  número correspondente ao Pokèmon desejado
         if (num < 1 || num > 151)
             printf("Pokemon invalido\n");
@@ -209,13 +210,15 @@ Pokemon EscolhePokemon()
         fgets (buffer, 1024, stdin);
         if (!(monstro[num].lvl = atof(buffer)))
             continue;
-        if(monstro[num].lvl < 1 || monstro[num].lvl > 40) {
+        if(monstro[num].lvl < 1 || monstro[num].lvl > 40) 
+        {
             printf("Informe nivel valido\n");
             continue;
         }
         if(ceiladora(monstro[num].lvl/0.5) == monstro[num].lvl/0.5)
             break;
-        else {
+        else 
+        {
             printf("Informe nivel valido\n");
             continue;
         }
@@ -226,7 +229,8 @@ Pokemon EscolhePokemon()
     return p;
 }
 
-void EscreveNome(Pokemon monstro) {
+void EscreveNome(Pokemon monstro) 
+{
     int i = 0;
 
     if (monstro.num < 10)
@@ -250,7 +254,8 @@ void EscreveNome(Pokemon monstro) {
 void EscreveNomePokemon()
 {
     int i;
-    for (i = 1 ; i <= 150 ; i = i + 5) {
+    for (i = 1 ; i <= 150 ; i = i + 5) 
+    {
         usleep(40000);
         EscreveNome(monstro[i]);
         EscreveNome(monstro[i+1]);
@@ -269,8 +274,10 @@ void MostraGolpes(Pokemon *escolhido, Golpes GolpesPossiveis[]) // mostra o tipo
         j = 39;
     else
         j = 7;
-    for(i = 0 ; i < j ; i++) {
-        if (escolhido->numAtk[i] == 208) {
+    for(i = 0 ; i < j ; i++) 
+    {
+        if (escolhido->numAtk[i] == 208) 
+        {
             GolpesPossiveis[i].numGolpe = 208;
             break;
         }
@@ -296,15 +303,18 @@ int getBound(Golpes possiveis[40],Pokemon p) // delimita o número de golpes de 
 int ValidaEntrada(char target, char* msg, Golpes possiveis[40],Pokemon p) // evita entradas inválidas
 {
     int input = 0;
-    while(1) {
+    while(1) 
+    {
         printf("%s", msg);
-        if (!scanf("%d", &input)) {
+        if (!scanf("%d", &input)) 
+        {
             printf("Entrada invalida!\n");
             getchar();
             continue;
         }
 
-        if (input < 1 || input > getBound(possiveis,p)) {
+        if (input < 1 || input > getBound(possiveis,p)) 
+        {
             printf("Numero invalido!\n");
             continue;
         }
@@ -440,12 +450,14 @@ void Battle(Pokemon p1[], Pokemon p2[]) // NAo terminado
                 bate = 0;
             }
         }
-            if (p1[i].hp > 0) { // p1[i] sobreviveu
+            if (p1[i].hp > 0) 
+            { // p1[i] sobreviveu
                 usleep(100000);
                 printf("\nPokemon %s (Player %d) ganhou de %s com %.2f de hp restante\n", p1[i].nome, 1, p2[j].nome, p1[i].hp);
                 j++;
             } 
-            else { // p2[j] sobreviveu
+            else 
+            { // p2[j] sobreviveu
                 usleep(100000);
                 printf("\nPokemon %s (Player %d) ganhou de %s com %.2f de hp restante\n", p2[j].nome, 2, p1[i].nome, p2[j].hp);
                 i++;
@@ -474,7 +486,8 @@ int main ()
     printf("\t\t\t|   Jogador 1:   |\n");
     printf("\t\t\t|                |\n");
     printf("\t\t\t ----------------\n\n\n");
-            for(i = 1 ; i <= 3 ; i++) {
+            for(i = 1 ; i <= 3 ; i++) 
+            {
                 printf("\nEscolha o %dº pokémon: ", i);
                 P1[i] = EscolhePokemon();
                 EscolheGolpe(&P1[i]);
@@ -500,7 +513,8 @@ int main ()
     
         clima = LerClima();
         
-    for(i = 0 ; i < 3 ; i++) {
+    for(i = 0 ; i < 3 ; i++) 
+    {
         BonusClima(clima, P1[i]);
         BonusClima(clima, P2[i]);
     }
