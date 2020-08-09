@@ -5,8 +5,7 @@
 #include <math.h>
 
 #define num_Pokedex 151
-#define num_Ataques 208
-        
+#define num_Ataques 208      
 
 // Não sei se ainda vão ter uso essas variaveis
 const int Normal = 0;
@@ -28,17 +27,11 @@ const int Dragon = 15;
 const int Dark = 16;
 const int Fairy = 17;
 
-
-
 // valida atk carregado (GLOBAL)
 int carregado;
 
-
-
 // matriz de eficacia (GLOBAL) // NÃO SEI SE POSSO DECLARAR MATRIZ COM CONST
 const float matriz[19][19] = {1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 0.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 2.0, 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 0.5, 0.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 1.0, 0.5, 0.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.0, 1.0, 1.0, 0.0, 2.0, 1.0, 2.0, 0.5, 1.0, 2.0, 2.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 2.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 2.0, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 0.5, 1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 2.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 0.5, 0.5, 2.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 0.0, 1.0, 1.0, 0.5, 0.5, 2.0, 2.0, 0.5, 1.0, 0.5, 0.5, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 0.0, 1.0, 1.0, 2.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 0.5, 1.0, 1.0, 0.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 2.0, 1.0, 1.0, 0.5, 2.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.0, 0.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 0.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-
-
 
 // Tipo Pokemon (GLOBAL)
 typedef struct
@@ -62,8 +55,6 @@ typedef struct
     tAtaques r, c;
     float nivel, velocidade, hp, energiaacumulada;
 }TreinadorBatalha;
-
-
 
 // Tipos de Pokemon com vantagem no clima escolhido
 typedef struct
@@ -267,8 +258,6 @@ void EscolheClima(tClima escolhido[], int aleatorio) // sera aleatorio se aleato
     
 }
 
-
-
 // Calcula a eficacia do ataque para a funcao CalculaGamma   // baseado nos tipos de p1 e p2 
 float CalculaTe(TreinadorBatalha p1, TreinadorBatalha p2)
 {
@@ -371,8 +360,6 @@ float CalculaTe(TreinadorBatalha p1, TreinadorBatalha p2)
     return Te;
 }
 
-
-
 // Calcula o bonus de clima para a funcao CalculaGamma   // Pokemon com vantagem climatica --> BONUS
 float BonusClima(TreinadorBatalha p1)   // CHECAR NOVAMENTE
 {
@@ -388,8 +375,6 @@ float BonusClima(TreinadorBatalha p1)   // CHECAR NOVAMENTE
     return 1;
 }
 
-
-
 // Calcula Alpha para a funcao CalculaGamma     // Aleatório
 float CalculaAlpha()
 {
@@ -397,8 +382,6 @@ float CalculaAlpha()
     a = ((100-(rand() % 15))/100);
     return a;
 }
-
-
 
 // Calcula Gamma para a funcao CalculaDano  // p1 ataca  // p2 defende
 float CalculaGamma(TreinadorBatalha p1, TreinadorBatalha p2)
@@ -427,8 +410,6 @@ float CalculaGamma(TreinadorBatalha p1, TreinadorBatalha p2)
 	}
 }
 
-
-
 // Calcula o Dano dos atks rapidos e carregados //p1 ataca //p2 defende
 float CalculaDano(TreinadorBatalha p1, TreinadorBatalha p2)
 {
@@ -450,8 +431,6 @@ float CalculaDano(TreinadorBatalha p1, TreinadorBatalha p2)
     return dano;
 }
 
-
-
 // Inicializa os valores de HP de cada pokemon escolhido de um treinador
 void CalculaHp(TreinadorBatalha p1[])
 {
@@ -462,8 +441,6 @@ void CalculaHp(TreinadorBatalha p1[])
     }
 }
 
-
-
 // Calcula o Acumulo de Energia para atks rapidos e pokemon defensor //p1 ataca //p2 defende
 void EnergiaAcumulada(TreinadorBatalha p1, TreinadorBatalha p2)
 {
@@ -473,9 +450,6 @@ void EnergiaAcumulada(TreinadorBatalha p1, TreinadorBatalha p2)
     else 
         carregado = 0;
 }
-
-
-
 
 // associada a selecaoPokedex; FINALIZADA, mas não da pra escolher o Mew ainda // Dratini tb n, n sei pq
 tAtaques EscolheAtk(TreinadorBatalha t1, int n)
@@ -918,5 +892,3 @@ int main()
 
     return 0;
 }
-
-
