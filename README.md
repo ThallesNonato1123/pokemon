@@ -1,3 +1,6 @@
+Este repositório contém os arquivos utilizados no desenvolvimento na linguagem C do sistema de batalha Pokèmon
+ 
+
 Para executar o código trabson.c:
 
 1) Instale o compilador GCC para a linguagem C utilizando comando >sudo apt-get install gcc<
